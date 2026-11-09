@@ -1,0 +1,2532 @@
+:root {
+    --ink: #17243a;
+    --muted: #607087;
+    --paper: #fbfcfe;
+    --white: #fff;
+    --line: #e4e9f0;
+    --blue: #315eea;
+    --blue-dark: #2448c3;
+    --violet: #6846c6;
+    --mint: #dff5e9;
+    --mint-ink: #14613a;
+    --yellow: #f6cb65;
+    --shadow: 0 12px 32px rgba(30, 48, 80, .08);
+    --sans: 'Segoe UI', Tahoma, sans-serif;
+    --display: Cambria, Georgia, serif;
+    --content: 1160px
+}
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+button,
+input {
+    font: inherit
+}
+
+button,
+a,
+input {
+    -webkit-tap-highlight-color: transparent
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #91a9ff;
+    outline-offset: 3px
+}
+
+::selection {
+    background: #dce4ff;
+    color: var(--ink)
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, .96);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px)
+}
+
+.nav-wrap {
+    max-width: var(--content);
+    height: 76px;
+    margin: auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font: 800 19px/1 var(--display);
+    white-space: nowrap;
+    letter-spacing: 0
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px 10px 10px 3px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 17px
+}
+
+.brand-nepal {
+    color: var(--blue)
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 25px
+}
+
+.site-nav a {
+    font-size: 13px;
+    font-weight: 600;
+    color: #42516a;
+    transition: color .18s
+}
+
+.site-nav a:hover {
+    color: var(--blue)
+}
+
+.menu-toggle {
+    display: none;
+    border: 0;
+    background: none;
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+    cursor: pointer
+}
+
+.menu-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--ink);
+    margin: 5px 0
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: #eff3ff;
+    border-bottom: 1px solid #e4e9f7
+}
+
+.hero:after {
+    content: "";
+    position: absolute;
+    right: -100px;
+    top: -125px;
+    width: 460px;
+    height: 460px;
+    border: 1px solid rgba(49, 94, 234, .13);
+    border-radius: 50%;
+    box-shadow: 0 0 0 48px rgba(49, 94, 234, .035), 0 0 0 96px rgba(49, 94, 234, .025);
+    pointer-events: none
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--content);
+    margin: auto;
+    padding: 76px 28px 83px
+}
+
+.eyebrow {
+    display: block;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase
+}
+
+.hero .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 9px
+}
+
+.hero .eyebrow:before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: var(--violet)
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--display);
+    letter-spacing: 0;
+    line-height: 1.2
+}
+
+h1 {
+    font-size: clamp(38px, 4vw, 58px);
+    max-width: 700px;
+    margin: 17px 0 18px;
+    font-weight: 800
+}
+
+.hero-copy {
+    max-width: 625px;
+    color: #51617b;
+    font-size: 17px;
+    margin-bottom: 28px
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px
+}
+
+.button {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 0;
+    border-radius: 6px;
+    padding: 0 19px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .18s, transform .18s
+}
+
+.button:hover {
+    transform: translateY(-1px)
+}
+
+.button-primary {
+    background: var(--blue);
+    color: #fff
+}
+
+.button-primary:hover {
+    background: var(--blue-dark)
+}
+
+.button-secondary {
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid var(--line)
+}
+
+.hero-note {
+    font-size: 12px;
+    color: var(--muted)
+}
+
+.search-wrap {
+    position: relative;
+    max-width: 625px;
+    margin-top: 30px
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    height: 58px;
+    background: #fff;
+    border: 1px solid #dfe5ef;
+    border-radius: 7px;
+    box-shadow: 0 7px 18px rgba(37, 54, 93, .06);
+    padding: 0 17px;
+    gap: 12px
+}
+
+.search-symbol {
+    font-size: 21px;
+    color: var(--blue)
+}
+
+.search-box input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--ink);
+    font-size: 15px
+}
+
+.search-box input::placeholder {
+    color: #8a96a9
+}
+
+.search-results {
+    position: absolute;
+    z-index: 4;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    box-shadow: var(--shadow);
+    overflow: hidden
+}
+
+.search-results a {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 17px;
+    border-bottom: 1px solid #eff2f7;
+    font-weight: 600
+}
+
+.search-results a:hover {
+    background: #f5f7ff;
+    color: var(--blue)
+}
+
+.search-results a span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 500
+}
+
+.search-empty {
+    padding: 10px 17px;
+    color: var(--muted);
+    font-size: 14px
+}
+
+.section {
+    max-width: var(--content);
+    margin: auto;
+    padding: 72px 28px
+}
+
+.section-soft {
+    max-width: none;
+    background: #f3f6fa;
+    border-top: 1px solid #e9edf3;
+    border-bottom: 1px solid #e9edf3
+}
+
+.section-soft>.section-inner {
+    max-width: var(--content);
+    margin: auto;
+    padding: 70px 28px
+}
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 25px
+}
+
+.section-heading h2 {
+    font-size: 30px;
+    margin: 6px 0 0
+}
+
+.section-heading p {
+    max-width: 500px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px
+}
+
+.text-link {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+    white-space: nowrap
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 13px
+}
+
+.tool-card {
+    position: relative;
+    min-height: 208px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0 2px 6px rgba(25, 42, 72, .025);
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+    animation: rise .45s both;
+    animation-delay: calc(var(--card-order, 0)*35ms)
+}
+
+.tool-card:hover {
+    transform: translateY(-3px);
+    border-color: #b9c9ff;
+    box-shadow: var(--shadow)
+}
+
+.tool-icon {
+    width: 37px;
+    height: 37px;
+    display: grid;
+    place-items: center;
+    background: #edf1ff;
+    color: var(--blue);
+    font: 800 15px var(--display);
+    border-radius: 10px 10px 10px 2px;
+    margin-bottom: 17px
+}
+
+.tool-category {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--violet);
+    text-transform: uppercase;
+    letter-spacing: .5px
+}
+
+.tool-card strong {
+    font: 700 15px/1.35 var(--display);
+    margin-top: 5px
+}
+
+.tool-description {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5
+}
+
+.card-arrow {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    color: #8794a9;
+    font-size: 17px
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px
+}
+
+.category-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 19px;
+    border-radius: 6px
+}
+
+.category-item strong {
+    display: block;
+    font: 700 16px var(--display);
+    margin-bottom: 4px
+}
+
+.category-item span {
+    font-size: 13px;
+    color: var(--muted)
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: 30px
+}
+
+.why-intro h2 {
+    font-size: 31px;
+    margin: 8px 0 10px
+}
+
+.why-intro p,
+.why-item p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0
+}
+
+.why-item {
+    padding: 2px 0 0 18px;
+    border-left: 2px solid var(--mint-ink)
+}
+
+.why-item strong {
+    display: block;
+    font: 700 16px var(--display);
+    margin-bottom: 7px
+}
+
+.guide-band {
+    background: #17304e;
+    color: #fff
+}
+
+.guide-band .section-heading .eyebrow {
+    color: #a8bbff
+}
+
+.guide-band .section-heading h2 {
+    color: #fff
+}
+
+.guide-band .section-heading p {
+    color: #c3cede
+}
+
+.guide-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px
+}
+
+.guide-item {
+    padding: 18px 0;
+    border-top: 1px solid #52647a;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    font-weight: 600
+}
+
+.guide-item span {
+    color: #a9bbff
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px 35px
+}
+
+.faq-item {
+    padding: 17px 0;
+    border-bottom: 1px solid var(--line)
+}
+
+.faq-item h3 {
+    font-size: 16px;
+    margin: 0 0 6px
+}
+
+.faq-item p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0
+}
+
+.site-footer {
+    background: #f2f5f9;
+    border-top: 1px solid var(--line)
+}
+
+.footer-main,
+.footer-bottom {
+    max-width: var(--content);
+    margin: auto;
+    padding: 36px 28px
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 45px
+}
+
+.footer-brand p {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 13px 0 0
+}
+
+.footer-brand .footer-note {
+    max-width: 360px;
+    font-size: 12px
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: #5d6a80
+}
+
+.footer-links strong {
+    color: var(--ink);
+    font-size: 13px;
+    margin-bottom: 4px
+}
+
+.footer-links a:hover {
+    color: var(--blue)
+}
+
+.footer-bottom {
+    border-top: 1px solid #dfe5ed;
+    padding-top: 15px;
+    padding-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    color: #748198;
+    font-size: 11px
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #7a8799;
+    font-size: 12px;
+    padding: 24px 0
+}
+
+.breadcrumb a {
+    color: var(--blue);
+    font-weight: 600
+}
+
+.calculator-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, .88fr);
+    gap: 60px;
+    align-items: start;
+    padding: 22px 0 60px
+}
+
+.calculator-intro {
+    padding: 15px 0
+}
+
+.calculator-intro h1 {
+    font-size: 44px;
+    margin: 9px 0 17px
+}
+
+.calculator-intro p {
+    max-width: 550px;
+    color: var(--muted)
+}
+
+.calculator-intro .lead {
+    font: 600 19px/1.5 var(--display);
+    color: var(--ink);
+    margin-bottom: 14px
+}
+
+.trust-note {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    margin-top: 23px;
+    color: var(--mint-ink);
+    font-size: 13px;
+    font-weight: 600
+}
+
+.trust-note span {
+    width: 21px;
+    height: 21px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--mint)
+}
+
+.calculator-panel {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: var(--shadow)
+}
+
+.panel-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px
+}
+
+.panel-heading h2 {
+    font-size: 21px;
+    margin: 3px 0 0
+}
+
+.panel-mark {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px 10px 10px 2px;
+    background: #edf1ff;
+    color: var(--blue);
+    font: 800 17px var(--display)
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    margin-bottom: 14px
+}
+
+.field span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #46556b
+}
+
+.field input {
+    width: 100%;
+    height: 43px;
+    padding: 0 11px;
+    border: 1px solid #dbe2eb;
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink)
+}
+
+.field input:focus {
+    border-color: var(--blue)
+}
+
+.field input::placeholder {
+    color: #a0a9b7
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 19px
+}
+
+.button-quiet {
+    background: #f2f4f8;
+    color: #4f5c70
+}
+
+.scale-note {
+    padding: 12px 13px;
+    background: #f0f3ff;
+    border-left: 3px solid var(--blue);
+    margin: 0 0 17px;
+    color: #4e5e77;
+    font-size: 12px;
+    line-height: 1.55
+}
+
+.scale-note strong {
+    color: var(--ink)
+}
+
+.subject-row {
+    display: grid;
+    grid-template-columns: minmax(90px, 1.3fr) minmax(80px, .8fr) minmax(80px, .8fr) 35px;
+    gap: 8px;
+    align-items: end;
+    border-bottom: 1px solid #edf0f4;
+    padding: 0 0 8px;
+    margin-bottom: 10px
+}
+
+.subject-row .field {
+    margin-bottom: 0
+}
+
+.subject-row .field span {
+    font-size: 10px
+}
+
+.icon-button {
+    width: 34px;
+    height: 42px;
+    margin-bottom: 0;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    color: #8a4652;
+    font-size: 20px;
+    cursor: pointer
+}
+
+.text-button {
+    border: 0;
+    background: none;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 0;
+    cursor: pointer
+}
+
+.mark-row {
+    grid-template-columns: 1fr
+}
+
+.form-error {
+    padding: 10px 12px;
+    margin: 12px 0 0;
+    border-radius: 5px;
+    background: #fff0ee;
+    color: #a33d31;
+    font-size: 13px
+}
+
+.result-panel {
+    margin-top: 22px;
+    padding: 19px;
+    background: #f0f8f3;
+    border: 1px solid #d8eee0;
+    border-radius: 6px;
+    animation: rise .25s ease both
+}
+
+.result-panel>strong {
+    display: block;
+    font: 800 27px/1.3 var(--display);
+    margin: 5px 0
+}
+
+.result-panel>p {
+    font-size: 13px;
+    color: #52655b;
+    margin: 0
+}
+
+.result-rows {
+    margin-top: 10px
+}
+
+.result-rows p {
+    font-size: 12px;
+    color: #41584b;
+    margin: 4px 0
+}
+
+.formula {
+    border-top: 1px solid #d4e8db;
+    margin-top: 15px;
+    padding-top: 12px
+}
+
+.formula span {
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #477057
+}
+
+.formula p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #405548
+}
+
+.article-content {
+    display: grid;
+    grid-template-columns: 1.5fr .7fr;
+    gap: 60px;
+    border-top: 1px solid var(--line);
+    padding: 56px 0
+}
+
+.article-content h2 {
+    font-size: 26px;
+    margin: 7px 0 14px
+}
+
+.article-content h3 {
+    font-size: 17px;
+    margin: 22px 0 8px
+}
+
+.article-content p,
+.article-content li {
+    font-size: 14px;
+    color: var(--muted)
+}
+
+.article-content ol {
+    padding-left: 20px
+}
+
+.article-aside {
+    padding: 21px;
+    background: #edf1ff;
+    border-radius: 5px;
+    align-self: start
+}
+
+.article-aside p {
+    color: #51617c
+}
+
+.article-aside a {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 13px
+}
+
+.related-tools {
+    padding: 10px 0 65px
+}
+
+.related-tools .tool-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+}
+
+.related-tools .tool-card {
+    min-height: 175px
+}
+
+.content-page {
+    max-width: 800px;
+    margin: auto;
+    padding: 55px 28px 80px
+}
+
+.content-page h1 {
+    font-size: 42px
+}
+
+.content-page h2 {
+    font-size: 22px;
+    margin-top: 32px
+}
+
+.content-page p,
+.content-page li {
+    color: var(--muted)
+}
+
+.content-page a {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px
+}
+
+.contact-form {
+    max-width: 600px;
+    margin-top: 28px
+}
+
+.contact-form textarea {
+    min-height: 135px;
+    padding: 11px;
+    border: 1px solid #dbe2eb;
+    border-radius: 5px;
+    font: inherit
+}
+
+.contact-success {
+    padding: 12px;
+    background: var(--mint);
+    color: var(--mint-ink)
+}
+
+.guide-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px
+}
+
+.guide-card {
+    padding: 22px 0;
+    border-top: 2px solid var(--blue)
+}
+
+.guide-card h2 {
+    font-size: 19px
+}
+
+.guide-card p {
+    color: var(--muted);
+    font-size: 14px
+}
+
+.guide-card a {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 13px
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(7px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.subject-row {
+    display: block;
+    border-bottom: 1px solid #edf0f4;
+    padding: 0 0 10px;
+    margin-bottom: 12px
+}
+
+.subject-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(95px, .8fr) 35px;
+    gap: 8px;
+    align-items: end
+}
+
+.subject-main.cgpa-main {
+    grid-template-columns: minmax(0, 1fr) 35px
+}
+
+.subject-main .field,
+.subject-data .field,
+.component-data .field {
+    margin-bottom: 8px
+}
+
+.subject-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px
+}
+
+.subject-row .field span {
+    font-size: 10px
+}
+
+.subject-main select {
+    width: 100%;
+    height: 43px;
+    padding: 0 8px;
+    border: 1px solid #dbe2eb;
+    border-radius: 5px;
+    background: #fff;
+    color: var(--ink)
+}
+
+.component-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    align-items: end
+}
+
+.component-heading {
+    grid-column: 1/-1;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600
+}
+
+.tool-faq {
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px
+}
+
+.tool-faq summary {
+    font-weight: 700;
+    cursor: pointer
+}
+
+.tool-faq p {
+    margin: 8px 0 0
+}
+
+@media(max-width:900px) {
+    .site-nav {
+        gap: 15px
+    }
+
+    .site-nav a {
+        font-size: 12px
+    }
+
+    .tool-grid {
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+    .calculator-layout {
+        gap: 30px
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .why-intro {
+        grid-column: 1/-1
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media(max-width:700px) {
+    .nav-wrap {
+        height: 64px;
+        padding: 0 19px
+    }
+
+    .menu-toggle {
+        display: block
+    }
+
+    .site-nav {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        padding: 12px 20px 19px;
+        background: white;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 10px 18px rgba(25, 42, 72, .08);
+        align-items: stretch;
+        gap: 0;
+        flex-direction: column
+    }
+
+    .site-nav.is-open {
+        display: flex
+    }
+
+    .site-nav a {
+        padding: 11px 0;
+        border-bottom: 1px solid #f0f2f6;
+        font-size: 14px
+    }
+
+    .hero-inner {
+        padding: 53px 20px 58px
+    }
+
+    .hero:after {
+        right: -285px;
+        top: -35px;
+        width: 360px;
+        height: 360px
+    }
+
+    .hero-copy {
+        font-size: 15px
+    }
+
+    .hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px
+    }
+
+    .hero-note {
+        padding-left: 3px
+    }
+
+    .search-wrap {
+        margin-top: 22px
+    }
+
+    .section {
+        padding: 51px 20px
+    }
+
+    .section-soft>.section-inner {
+        padding: 51px 20px
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 11px
+    }
+
+    .section-heading h2 {
+        font-size: 26px
+    }
+
+    .tool-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px
+    }
+
+    .tool-card {
+        min-height: 190px;
+        padding: 15px
+    }
+
+    .tool-icon {
+        margin-bottom: 12px
+    }
+
+    .tool-card strong {
+        font-size: 14px
+    }
+
+    .tool-description {
+        font-size: 11px
+    }
+
+    .category-grid {
+        gap: 9px
+    }
+
+    .category-item {
+        padding: 15px
+    }
+
+    .category-item strong {
+        font-size: 14px
+    }
+
+    .category-item span {
+        font-size: 12px
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: 20px
+    }
+
+    .why-intro {
+        grid-column: auto
+    }
+
+    .guide-list {
+        grid-template-columns: 1fr
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 0
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        padding: 30px 20px
+    }
+
+    .footer-brand {
+        grid-column: 1/-1
+    }
+
+    .footer-bottom {
+        padding: 14px 20px;
+        gap: 9px;
+        flex-direction: column
+    }
+
+    .breadcrumb {
+        padding: 18px 0;
+        flex-wrap: wrap
+    }
+
+    .calculator-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 5px 0 36px
+    }
+
+    .calculator-intro {
+        padding: 6px 0
+    }
+
+    .calculator-intro h1 {
+        font-size: 36px
+    }
+
+    .calculator-intro .lead {
+        font-size: 17px
+    }
+
+    .calculator-panel {
+        padding: 18px
+    }
+
+    .article-content {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 40px 0
+    }
+
+    .related-tools .tool-grid {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .content-page {
+        padding: 42px 20px 65px
+    }
+
+    .content-page h1 {
+        font-size: 34px
+    }
+
+    .guide-grid {
+        grid-template-columns: 1fr
+    }
+}
+
+@media(max-width:370px) {
+
+    .tool-grid,
+    .related-tools .tool-grid {
+        grid-template-columns: 1fr
+    }
+
+    .tool-card {
+        min-height: 155px
+    }
+
+    .subject-row {
+        grid-template-columns: minmax(75px, 1fr) minmax(65px, .8fr) minmax(72px, .8fr) 32px;
+        gap: 5px
+    }
+
+    .field input {
+        padding: 0 8px;
+        font-size: 14px
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important
+    }
+}
+
+.grade-scale-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 35px;
+    gap: 8px;
+    align-items: end;
+    border-bottom: 1px solid #edf0f4
+}
+
+.grade-scale-row .field {
+    margin-bottom: 8px
+}
+
+.search-results {
+    max-height: 330px;
+    overflow-y: auto
+}
+
+.neb-calculator .calculator-layout {
+    display: block;
+    max-width: var(--content);
+    padding-top: 0
+}
+
+.neb-calculator .calculator-intro,
+.neb-calculator .panel-heading {
+    display: none
+}
+
+.neb-calculator .calculator-panel {
+    padding: 24px;
+    border: 1px solid #dce5ff;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(30, 48, 80, .08)
+}
+
+.neb-student-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px
+}
+
+.neb-calculator .field {
+    display: block;
+    margin-bottom: 12px
+}
+
+.neb-calculator .field span {
+    display: block;
+    margin: 0 0 5px;
+    color: #596579;
+    font-size: 13px;
+    font-weight: 500
+}
+
+.neb-calculator .field input,
+.neb-calculator .field select {
+    width: 100%;
+    height: 39px;
+    padding: 0 12px;
+    border: 1px solid #cfdbff;
+    border-radius: 8px;
+    background: #fff;
+    color: #17243a;
+    font-size: 13px
+}
+
+.neb-note {
+    display: inline-block;
+    margin: 14px 0 8px;
+    padding: 8px 12px;
+    border: 1px solid #c9dcff;
+    border-radius: 8px;
+    background: #edf5ff;
+    color: #31558d;
+    font-size: 12px
+}
+
+.neb-group-heading {
+    margin: 18px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dce5ff;
+    color: #315eea;
+    font-size: 14px
+}
+
+.neb-subject-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px
+}
+
+.neb-subject-card {
+    min-width: 0;
+    padding: 16px 18px;
+    border: 1px solid #dce5ff;
+    border-radius: 11px;
+    background: linear-gradient(145deg, #fff, #f8faff);
+    box-shadow: 0 8px 18px rgba(30, 48, 80, .07)
+}
+
+.neb-subject-card {
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease
+}
+
+.neb-subject-card:hover,
+.neb-subject-card:focus-within {
+    transform: translateY(-3px);
+    border-color: #91a9ff;
+    box-shadow: 0 13px 24px rgba(49, 94, 234, .14)
+}
+
+.neb-subject-card h3 {
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dce5ff;
+    color: #3e5ff0;
+    font-size: 15px
+}
+
+.neb-subject-card .field {
+    margin-bottom: 10px
+}
+
+.neb-subject-card .field span {
+    margin-bottom: 5px
+}
+
+.neb-subject-card [name="choice"],
+.neb-subject-card [name^="optional"] {
+    margin-bottom: 5px
+}
+
+.neb-grade-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0
+}
+
+.neb-calculator .form-actions {
+    justify-content: center;
+    margin-top: 22px
+}
+
+.neb-calculator .button-primary {
+    min-width: 190px;
+    justify-content: center;
+    background: linear-gradient(110deg, #4967ed, #4539c9);
+    box-shadow: 0 8px 18px rgba(69, 73, 211, .25)
+}
+
+.neb-calculator .article-content {
+    max-width: var(--content)
+}
+
+.neb-marksheet {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid #dce5ff;
+    border-radius: 12px;
+    background: #fff;
+    color: #17243a;
+    box-shadow: 0 12px 30px rgba(30, 48, 80, .08)
+}
+
+.neb-sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid #315eea
+}
+
+.neb-sheet-header .eyebrow {
+    font-size: 10px;
+    letter-spacing: .8px
+}
+
+.neb-sheet-header h2 {
+    margin: 5px 0 0;
+    font-size: 23px
+}
+
+.neb-gpa-score {
+    min-width: 175px;
+    padding: 12px 16px;
+    border: 1px solid #cdd8ff;
+    border-radius: 9px;
+    background: #f0f4ff;
+    text-align: center;
+    transition: transform .18s ease, box-shadow .18s ease
+}
+
+.neb-gpa-score:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(49, 94, 234, .13)
+}
+
+.neb-gpa-score span,
+.neb-gpa-score strong {
+    display: block
+}
+
+.neb-gpa-score span {
+    color: #596579;
+    font-size: 11px
+}
+
+.neb-gpa-score strong {
+    margin-top: 2px;
+    color: #3f4fd2;
+    font-size: 26px;
+    line-height: 1.2
+}
+
+.neb-sheet-meta {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px;
+    padding: 14px 0;
+    color: #596579;
+    font-size: 12px
+}
+
+.neb-sheet-meta strong {
+    display: block;
+    color: #17243a;
+    font-size: 14px;
+    text-transform: capitalize
+}
+
+.neb-result-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #dce5ff;
+    border-radius: 8px
+}
+
+.neb-result-table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+    font-size: 12px
+}
+
+.neb-result-table th,
+.neb-result-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e8edfa;
+    text-align: left;
+    white-space: nowrap
+}
+
+.neb-result-table th {
+    background: #f0f4ff;
+    color: #344a9b;
+    font-size: 11px
+}
+
+.neb-result-table tbody tr {
+    transition: background-color .15s ease
+}
+
+.neb-result-table tbody tr:hover {
+    background: #edf5ff
+}
+
+.neb-result-table tbody tr:last-child td {
+    border-bottom: 0
+}
+
+.neb-result-details {
+    margin: 12px 0;
+    color: #596579;
+    font-size: 12px
+}
+
+.neb-marksheet .formula {
+    margin-top: 14px
+}
+
+.neb-sheet-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e8edfa;
+    color: #66738a;
+    font-size: 11px
+}
+
+.neb-sheet-footer .button {
+    padding: 8px 12px;
+    border: 1px solid #dce5ff;
+    border-radius: 7px;
+    background: #fff;
+    color: #315eea;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease, transform .15s ease
+}
+
+.neb-sheet-footer .button:hover {
+    transform: translateY(-1px);
+    border-color: #91a9ff;
+    background: #f0f4ff
+}
+
+.see-compulsory-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+}
+
+.see-optional-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+
+.see-grade-scale {
+    margin-top: 18px;
+    border-top: 1px solid #dce5ff
+}
+
+.see-grade-scale summary {
+    padding: 12px 0;
+    color: #315eea;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.see-grade-scale .neb-result-table {
+    min-width: 520px
+}
+
+.see-student-name {
+    max-width: 520px
+}
+
+@media print {
+    body * {
+        visibility: hidden !important
+    }
+
+    .neb-calculator .neb-marksheet,
+    .neb-calculator .neb-marksheet * {
+        visibility: visible !important
+    }
+
+    .neb-calculator .neb-marksheet {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        margin: 0;
+        padding: 12px;
+        border: 0;
+        box-shadow: none
+    }
+
+    .neb-calculator .neb-sheet-footer [data-print-result] {
+        display: none
+    }
+
+    .neb-result-table {
+        min-width: 0;
+        font-size: 10px
+    }
+
+    .neb-result-table th,
+    .neb-result-table td {
+        padding: 6px
+    }
+}
+
+@media(max-width:700px) {
+    .neb-calculator .calculator-layout {
+        padding: 0 12px 30px
+    }
+
+    .neb-calculator .calculator-panel {
+        padding: 16px
+    }
+
+    .neb-student-fields {
+        grid-template-columns: 1fr;
+        gap: 0
+    }
+
+    .neb-subject-grid {
+        gap: 10px
+    }
+
+    .neb-subject-card {
+        padding: 13px
+    }
+
+    .neb-subject-card h3 {
+        font-size: 13px
+    }
+
+    .neb-calculator .field span {
+        font-size: 11px
+    }
+
+    .neb-calculator .field input,
+    .neb-calculator .field select {
+        height: 36px;
+        font-size: 12px
+    }
+}
+
+@media(max-width:700px) {
+    .neb-marksheet {
+        padding: 16px
+    }
+
+    .neb-sheet-header {
+        align-items: flex-start;
+        flex-direction: column
+    }
+
+    .neb-gpa-score {
+        width: 100%
+    }
+
+    .neb-sheet-meta {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .neb-sheet-meta span:first-child {
+        grid-column: 1/-1
+    }
+
+    .neb-sheet-footer {
+        align-items: flex-start;
+        flex-direction: column
+    }
+}
+
+@media(max-width:700px) {
+    .see-compulsory-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .see-optional-grid {
+        grid-template-columns: 1fr
+    }
+}
+
+@media(max-width:540px) {
+    .neb-subject-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+}
+
+@media(max-width:430px) {
+    .neb-subject-grid {
+        grid-template-columns: 1fr
+    }
+
+    .neb-compulsory-grid {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .neb-compulsory-grid .neb-subject-card:last-child {
+        grid-column: 1/-1
+    }
+}
+
+.university-gpa-calculator.section {
+    max-width: 1240px;
+    padding: 24px 28px 64px
+}
+
+.university-gpa-calculator .breadcrumb {
+    padding: 18px 0 24px
+}
+
+.university-page {
+    max-width: 1160px;
+    margin: 0 auto
+}
+
+.university-page>h1 {
+    max-width: none;
+    margin: 0 0 8px;
+    font-size: clamp(34px, 4vw, 48px)
+}
+
+.university-page-lead {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: 16px
+}
+
+.university-gpa-calculator .calculator-panel {
+    padding: clamp(20px, 3.5vw, 42px);
+    border: 1px solid #d4ddf4;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 12px 32px rgba(30, 48, 80, .07)
+}
+
+.university-gpa-calculator .visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0
+}
+
+.university-scale-note {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    margin-bottom: 30px;
+    color: #40516a;
+    font-size: 17px
+}
+
+.university-scale-toggle {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #2448c3;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.university-scale-toggle:hover {
+    text-decoration: underline
+}
+
+.university-custom-scale-note {
+    flex-basis: 100%;
+    color: var(--muted);
+    font-size: 14px
+}
+
+.university-semester-list {
+    display: grid;
+    gap: 28px
+}
+
+.university-semester {
+    min-width: 0
+}
+
+.university-semester-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 14px
+}
+
+.university-semester-heading label {
+    min-width: 0
+}
+
+.university-semester-heading input {
+    width: 100%;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font-size: 20px;
+    font-weight: 700
+}
+
+.university-semester-heading input::placeholder {
+    color: var(--ink);
+    opacity: 1
+}
+
+.university-remove-semester {
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #66758a;
+    font-size: 13px;
+    cursor: pointer
+}
+
+.university-remove-semester:hover {
+    background: #fff3f3;
+    color: #a52e2e
+}
+
+.university-course-header,
+.university-course-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px minmax(150px, 192px) minmax(120px, 156px);
+    align-items: center;
+    gap: 18px
+}
+
+.university-course-header {
+    padding: 0 12px 9px;
+    color: #42536d;
+    font-size: 15px;
+    font-weight: 700
+}
+
+.university-course-header span:first-child {
+    grid-column: 1/3
+}
+
+.university-course-list {
+    display: grid;
+    gap: 12px
+}
+
+.university-course-row {
+    position: relative
+}
+
+.university-course-name,
+.university-grade-field,
+.university-credit-field {
+    display: block;
+    min-width: 0;
+    margin: 0
+}
+
+.university-course-name input,
+.university-grade-field select,
+.university-grade-points,
+.university-credit-field select,
+.university-custom-credit {
+    width: 100%;
+    min-width: 0;
+    height: 58px;
+    padding: 0 16px;
+    border: 1px solid #dce5f6;
+    border-radius: 16px;
+    background-color: #f7f9fd;
+    color: #213550;
+    font-size: 17px
+}
+
+.university-course-name input {
+    padding-right: 14px;
+    color: #566a85
+}
+
+.university-course-name input::placeholder {
+    color: #6b7b92;
+    opacity: 1
+}
+
+.university-grade-field select,
+.university-credit-field select {
+    cursor: pointer
+}
+
+.university-remove-course {
+    width: 40px;
+    height: 44px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #65768e;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer
+}
+
+.university-remove-course:hover {
+    background: #fff0f0;
+    color: #a52e2e
+}
+
+.university-course-row [hidden],
+.university-custom-scale-note[hidden] {
+    display: none
+}
+
+.university-add-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 14px;
+    margin-top: 18px
+}
+
+.university-add-course,
+.university-add-semester {
+    min-height: 58px;
+    padding: 12px 18px;
+    border: 1px dashed #9ab6ef;
+    border-radius: 12px;
+    background: #f1f6ff;
+    color: #2448c3;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.university-add-course:hover,
+.university-add-semester:hover {
+    background: #e8f0ff
+}
+
+.university-add-semester {
+    min-width: 190px;
+    border-color: transparent;
+    background: transparent
+}
+
+.university-form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px
+}
+
+.university-form-actions .button-primary {
+    flex: 1;
+    min-height: 54px
+}
+
+.university-form-actions .button-quiet {
+    min-width: 110px;
+    min-height: 54px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink)
+}
+
+.university-result {
+    margin-top: 26px;
+    padding: 24px;
+    border: 1px solid #d6e1ff;
+    border-radius: 14px;
+    background: #f2f5ff
+}
+
+.university-result>.eyebrow {
+    font-size: 12px
+}
+
+.university-result>strong {
+    display: block;
+    margin: 4px 0;
+    color: #2448c3;
+    font-size: clamp(34px, 5vw, 48px);
+    line-height: 1.15
+}
+
+.university-result>p {
+    margin: 0;
+    color: #53627a
+}
+
+.university-result .result-rows {
+    display: grid;
+    gap: 8px;
+    margin: 16px 0
+}
+
+.university-result .result-rows p {
+    margin: 0;
+    padding: 10px 12px;
+    border: 1px solid #dce5fa;
+    border-radius: 8px;
+    background: #fff;
+    color: #34445b
+}
+
+@media(max-width:700px) {
+    .university-gpa-calculator.section {
+        padding: 14px 16px 36px
+    }
+
+    .university-gpa-calculator .breadcrumb {
+        padding: 12px 0 18px
+    }
+
+    .university-page>h1 {
+        font-size: 34px
+    }
+
+    .university-page-lead {
+        margin-bottom: 18px;
+        font-size: 14px
+    }
+
+    .university-gpa-calculator .calculator-panel {
+        padding: 16px;
+        border-radius: 14px
+    }
+
+    .university-scale-note {
+        gap: 6px 10px;
+        margin-bottom: 24px;
+        font-size: 15px
+    }
+
+    .university-course-header {
+        display: none
+    }
+
+    .university-semester-list {
+        gap: 22px
+    }
+
+    .university-course-row {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 10px 12px;
+        padding: 12px;
+        border: 1px solid #e1e8f5;
+        border-radius: 14px;
+        background: #fff
+    }
+
+    .university-course-name {
+        grid-column: 1/-1;
+        padding-right: 34px
+    }
+
+    .university-remove-course {
+        position: absolute;
+        top: 16px;
+        right: 12px;
+        width: 34px;
+        height: 34px
+    }
+
+    .university-course-name input,
+    .university-grade-field select,
+    .university-grade-points,
+    .university-credit-field select,
+    .university-custom-credit {
+        height: 52px;
+        padding: 0 12px;
+        border-radius: 12px;
+        font-size: 16px
+    }
+
+    .university-add-actions {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 6px;
+        margin-top: 14px
+    }
+
+    .university-add-course {
+        width: 100%
+    }
+
+    .university-add-semester {
+        width: 100%;
+        min-width: 0
+    }
+
+    .university-form-actions {
+        flex-direction: column
+    }
+
+    .university-form-actions .button-primary,
+    .university-form-actions .button-quiet {
+        width: 100%
+    }
+
+    .university-result {
+        padding: 18px
+    }
+
+    .university-result .result-rows p {
+        overflow-wrap: anywhere;
+        font-size: 14px
+    }
+}
+
+.cgpa-calculator.section {
+    max-width: 980px;
+    padding: 24px 28px 64px
+}
+
+.cgpa-calculator .breadcrumb {
+    padding: 18px 0 24px
+}
+
+.cgpa-page {
+    max-width: 900px;
+    margin: 0 auto
+}
+
+.cgpa-page>h1 {
+    max-width: none;
+    margin: 0 0 22px;
+    font-size: clamp(34px, 4vw, 48px)
+}
+
+.cgpa-calculator .calculator-panel {
+    padding: clamp(18px, 3vw, 34px);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: var(--shadow)
+}
+
+.cgpa-section-header {
+    margin-bottom: 20px
+}
+
+.cgpa-section-header h2 {
+    margin: 0 0 5px;
+    font: 700 24px/1.2 var(--sans)
+}
+
+.cgpa-section-header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px
+}
+
+.cgpa-semester-table {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #f7f9fc
+}
+
+.cgpa-table-header,
+.cgpa-semester-row {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1.4fr) minmax(120px, .8fr) minmax(120px, .8fr) 44px;
+    align-items: center;
+    gap: 14px
+}
+
+.cgpa-table-header {
+    padding: 0 12px 10px;
+    color: #52637a;
+    font-size: 13px;
+    font-weight: 700
+}
+
+.cgpa-table-header span:first-child {
+    grid-column: 2
+}
+
+.cgpa-semester-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.cgpa-semester-row {
+    position: relative;
+    padding: 16px 12px;
+    border: 1px solid #e1e7f0;
+    border-radius: 10px;
+    background: #fff
+}
+
+.cgpa-index-badge {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #edf1ff;
+    color: var(--blue);
+    font-size: 14px;
+    font-weight: 800
+}
+
+.cgpa-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0;
+    color: #34445b
+}
+
+.cgpa-field span {
+    font-size: 13px;
+    font-weight: 700
+}
+
+.cgpa-field input {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 10px 12px;
+    border: 1px solid #cfd8e5;
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink);
+    font-size: 16px
+}
+
+.cgpa-field input::placeholder {
+    color: #8a96a9
+}
+
+.cgpa-remove-button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #dce3ed;
+    border-radius: 8px;
+    background: #f7f9fc;
+    color: #52637a;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer
+}
+
+.cgpa-remove-button:hover {
+    border-color: #f0b5b5;
+    background: #fff5f5;
+    color: #a52e2e
+}
+
+.cgpa-add-semester {
+    width: 100%;
+    min-height: 52px;
+    margin-top: 14px;
+    padding: 10px 16px;
+    border: 1px dashed #9aadd0;
+    border-radius: 9px;
+    background: #fff;
+    color: #294da8;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.cgpa-add-semester:hover {
+    background: #f2f5ff
+}
+
+.cgpa-form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px
+}
+
+.cgpa-form-actions .button-primary {
+    flex: 1;
+    min-height: 54px
+}
+
+.cgpa-form-actions .button-quiet {
+    min-width: 110px;
+    min-height: 54px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink)
+}
+
+.cgpa-result {
+    margin-top: 24px;
+    padding: 22px;
+    border: 1px solid #d6e1ff;
+    border-radius: 12px;
+    background: #f2f5ff
+}
+
+.cgpa-result>.eyebrow {
+    font-size: 12px
+}
+
+.cgpa-result>strong {
+    display: block;
+    margin: 4px 0;
+    color: #2448c3;
+    font-size: clamp(32px, 5vw, 46px);
+    line-height: 1.15
+}
+
+.cgpa-result>p {
+    margin: 0;
+    color: #53627a
+}
+
+.cgpa-result-list {
+    display: grid;
+    gap: 8px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none
+}
+
+.cgpa-result-list li {
+    padding: 10px 12px;
+    border: 1px solid #dce5fa;
+    border-radius: 8px;
+    background: #fff;
+    color: #34445b
+}
+
+@media(max-width:640px) {
+    .cgpa-calculator.section {
+        padding: 14px 16px 36px
+    }
+
+    .cgpa-calculator .breadcrumb {
+        padding: 12px 0 18px
+    }
+
+    .cgpa-page>h1 {
+        margin-bottom: 16px;
+        font-size: 34px
+    }
+
+    .cgpa-calculator .calculator-panel {
+        padding: 16px
+    }
+
+    .cgpa-section-header h2 {
+        font-size: 21px
+    }
+
+    .cgpa-section-header p {
+        font-size: 14px
+    }
+
+    .cgpa-semester-table {
+        padding: 12px
+    }
+
+    .cgpa-table-header {
+        display: none
+    }
+
+    .cgpa-semester-row {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 12px;
+        padding: 16px 12px
+    }
+
+    .cgpa-index-badge {
+        display: none
+    }
+
+    .cgpa-field:first-of-type {
+        grid-column: 1/-1;
+        padding-right: 42px
+    }
+
+    .cgpa-field span {
+        font-size: 12px
+    }
+
+    .cgpa-field input {
+        min-height: 50px;
+        padding: 9px
+    }
+
+    .cgpa-remove-button {
+        position: absolute;
+        top: 11px;
+        right: 11px
+    }
+
+    .cgpa-form-actions {
+        flex-direction: column
+    }
+
+    .cgpa-form-actions .button-primary,
+    .cgpa-form-actions .button-quiet {
+        width: 100%
+    }
+
+    .cgpa-result {
+        padding: 18px
+    }
+
+    .cgpa-result-list li {
+        font-size: 14px
+    }
+}
