@@ -40,3 +40,55 @@ test("every calculator catalog entry has a page and sitemap entry", () => {
     assert.ok(fs.existsSync(path.join(root, relative)), `Sitemap path ${pathname} is missing`);
   }
 });
+
+test("every page has unique metadata for the preferred www domain", () => {
+  const pages = htmlFiles(root);
+  const titles = [];
+  const descriptions = [];
+  const canonicals = [];
+  for (const page of pages) {
+    const source = fs.readFileSync(page, "utf8");
+    const title = source.match(/<title>([^<]+)<\/title>/i)?.[1];
+    const description = source.match(/<meta\s+name="description"\s+content="([^"]+)"/i)?.[1];
+    const canonical = source.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1];
+    const ogTitle = source.match(/<meta\s+property="og:title"\s+content="([^"]+)"/i)?.[1];
+    const ogDescription = source.match(/<meta\s+property="og:description"\s+content="([^"]+)"/i)?.[1];
+    const ogType = source.match(/<meta\s+property="og:type"\s+content="([^"]+)"/i)?.[1];
+    const ogUrl = source.match(/<meta\s+property="og:url"\s+content="([^"]+)"/i)?.[1];
+    const name = path.relative(root, page);
+
+    assert.ok(title, `${name} is missing a title`);
+    assert.ok(description, `${name} is missing a description`);
+    assert.ok(canonical, `${name} is missing a canonical URL`);
+    assert.ok(ogTitle && ogDescription && ogType && ogUrl, `${name} is missing Open Graph metadata`);
+    assert.equal(new URL(canonical).hostname, "www.kaflenischal1.com.np", `${name} uses the wrong canonical host`);
+    assert.equal(ogUrl, canonical, `${name} Open Graph URL must match its canonical URL`);
+    titles.push(title);
+    descriptions.push(description);
+    canonicals.push(canonical);
+  }
+
+  assert.equal(new Set(titles).size, titles.length, "Page titles should be unique");
+  assert.equal(new Set(descriptions).size, descriptions.length, "Page descriptions should be unique");
+  assert.equal(new Set(canonicals).size, canonicals.length, "Canonical URLs should be unique");
+  const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
+  const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
+  assert.deepEqual(new Set(sitemapUrls), new Set(canonicals), "Sitemap should list every canonical page exactly once");
+});
+
+test("every calculator has its own complete educational guide", () => {
+  const app = fs.readFileSync(path.join(root, "assets/js/app.js"), "utf8");
+  const catalogIds = [...app.matchAll(/\{ id: "([^"]+)", slug:/g)].map(([, id]) => id);
+  const guideBody = app.match(/const calculatorGuides = \{([\s\S]*?)\n  \};/)?.[1];
+  assert.ok(guideBody, "Calculator guide data is missing");
+  const guideIds = [...guideBody.matchAll(/^\s+(?:"([^"]+)"|([a-z][\w-]*)):\s+\{/gm)]
+    .map(([, quoted, plain]) => quoted || plain);
+
+  assert.deepEqual(new Set(guideIds), new Set(catalogIds), "Every calculator needs a guide entry");
+  for (const section of ["example:", "steps:", "mistakes:", "limitation:", "faqs:"]) {
+    assert.equal([...guideBody.matchAll(new RegExp(`\\b${section}`, "g"))].length, catalogIds.length,
+      `Every calculator guide needs ${section.slice(0, -1)}`);
+  }
+  assert.match(guideBody, /does not apply subject credit hours/);
+  assert.match(guideBody, /applies its encoded 3- or 5-credit values/);
+});

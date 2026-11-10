@@ -39,23 +39,167 @@
     "assignment-deadline": ["Keep the next due date in view.", "Choose the assignment deadline to see how many calendar days remain or whether the date has passed."],
   };
 
-  const learningNotes = {
-    "neb-gpa": ["A+ maps to 4.0 grade points, A to 3.6, and each subject combines theory and practical/internal components using its mark split before credit weighting.", "Does the result replace an official transcript? No. Use it as an estimate and confirm your subject credits and current grading rules with your school."],
-    "see-gpa": ["A theory grade of A (3.60) and practical grade of B (2.80) produce (3.60 x 75 + 2.80 x 25) / 100 = 3.40 for that subject.", "What happens if any component is NG? NG has no grade point in the supplied table, so the overall GPA is reported as unavailable."],
-    "university-gpa": ["A 4-credit course at 3.5 and a 2-credit course at 4.0 produce (14 + 8) / 6 = 3.67.", "Why enter credits? Courses with more credits contribute more to a weighted semester GPA."],
-    cgpa: ["A 15-credit semester at 3.4 and a 12-credit semester at 3.8 give (51 + 45.6) / 27 = 3.58.", "Should semester GPAs be averaged equally? Only when their credits are equal; otherwise credit-weight them."],
-    attendance: ["If you attended 18 of 24 classes, 18 / 24 x 100 = 75% attendance, with 6 classes missed.", "Does this include cancelled classes? Enter only classes your institution counts as conducted."],
-    bunk: ["With 18 attended out of 20 and an 80% target, two more absences leave 18 / 22 = 81.82%.", "Does the result include a safety margin? No. Keep a buffer for timetable or policy changes."],
-    "attendance-recovery": ["At 5 attended of 10, reaching 75% takes 10 straight attended classes: 15 / 20 = 75%.", "What if I miss another class? Recalculate using the updated conducted and attended totals."],
-    percentage: ["45 marks out of 60 is 45 / 60 x 100 = 75%.", "Can I enter decimal marks? Yes, decimal values are supported."],
-    "final-marks": ["With 80% internally, a 40% internal share, and a 70% target, the final target is (70 - 32) / 0.60 = 63.33%.", "What if the target is impossible? The result says so when more than 100% is required on the final."],
-    average: ["Marks of 80, 90, and 70 have an average of (80 + 90 + 70) / 3 = 80.", "Are subjects weighted by credits? No. This tool gives every entered mark equal weight."],
-    grade: ["At 72 out of 100, a configured B threshold of 60% matches, while an A threshold of 80% does not.", "Are the default boundaries official? No. Edit them to match your current course requirements."],
-    age: ["A birth date of 1 January 2000 calculated on 1 January 2025 is 25 years, 0 months, 0 days.", "Can I calculate age on a past date? Yes. Use the optional calculation date field."],
-    "date-difference": ["From 28 February to 1 March 2024 is 2 calendar days because 2024 is a leap year.", "Is the start date counted? The displayed difference counts elapsed days, not both endpoints inclusively."],
-    countdown: ["An exam on 10 November calculated on 31 October has 10 calendar days remaining.", "Does the calculator use my time zone? Date-only values are read locally in your browser."],
-    "study-time": ["125 minutes shared across 3 subjects gives 41 whole study minutes per subject, with 2 minutes left over.", "Are breaks included? No. Add break time separately when planning your session."],
-    "assignment-deadline": ["If an assignment is due tomorrow, the result shows one day until the deadline.", "What does an overdue result mean? The selected due date is earlier than today's local calendar date."],
+  const calculatorGuides = {
+    "neb-gpa": {
+      example: "For a subject with a 75/25 theory/practical split, theory grade B (2.8) and practical grade A (3.6) give (2.8 × 75 + 3.6 × 25) / 100 = 3.0 subject points. If that 3-credit subject and a 5-credit subject at 3.6 are combined, their weighted average is (3 × 3.0 + 5 × 3.6) / 8 = 3.375.",
+      steps: ["Choose Science or Management and the available subject choice.", "Choose three distinct optional subjects and enter theory and practical/internal grades for every subject.", "Calculate, then review each subject point, credit, and weighted contribution in the result table."],
+      mistakes: ["Selecting the same subject as both the subject choice and an optional subject.", "Treating the estimate as official without checking the current grade-point table, component split, and credits."],
+      limitation: "This implementation uses its displayed grade-point table, assigns a 75/25 split to most subjects and 50/50 to Computer Science and Hotel Management, and applies its encoded 3- or 5-credit values. Confirm that these assumptions match your current NEB programme; the result is not an official grade.",
+      faqs: [
+        ["How are credits used?", "The current calculator multiplies each subject point by its encoded credit value, adds those weighted points, and divides by total credits. Check the credit value assigned to your programme."],
+        ["Is this an official NEB result?", "No. It is an estimate based on the assumptions shown here. Only the relevant school or examination authority can confirm an official result."]
+      ]
+    },
+    "see-gpa": {
+      example: "Using the displayed scale, theory grade A (3.6) and practical grade B (2.8) produce (3.6 × 75 + 2.8 × 25) / 100 = 3.4 subject points. If seven subjects are 3.6 and one is 3.2, the current equal-weight mean is (7 × 3.6 + 3.2) / 8 = 3.55.",
+      steps: ["Enter theory and practical grades for the six compulsory subjects.", "Choose one subject from each optional-subject list and enter both component grades.", "Calculate and inspect each subject point; open the grade-point scale to review the mapping used."],
+      mistakes: ["Reversing the theory and practical grades even though the components have different weights.", "Assuming the displayed scale or subject weighting is guaranteed to match a current official result."],
+      limitation: "The current implementation uses the displayed grade-point table, a 75/25 theory/practical split, and an equal average of the eight subject points; it does not apply subject credit hours. Confirm the current SEE rules and weighting with your school or the examination authority. This is not an official result.",
+      faqs: [
+        ["How does NG affect the result?", "NG has no numeric grade point in the supplied table. If either component is NG, the calculator reports the overall GPA as unavailable."],
+        ["Does this use SEE credit hours?", "No. The current model gives each of its eight subject points equal weight. Check current official requirements if your result uses a different method."]
+      ]
+    },
+    "university-gpa": {
+      example: "A 3-credit course at 3.5 and a 2-credit course at 4.0 give (3.5 × 3 + 4.0 × 2) / (3 + 2) = 3.7 GPA.",
+      steps: ["Select the standard 4.0 grade scale or switch to your institution's scale.", "For each course, enter its grade or grade points and its credit value.", "Add any remaining courses, then calculate and check the credit-weighted result."],
+      mistakes: ["Using course marks instead of grade points in custom-scale mode.", "Leaving out credits or mixing credit systems, such as semester credits and contact hours."],
+      limitation: "The standard grade-to-point mapping is a generic 4.0 scale and may not match your university. Custom mode accepts grade points from 0 to 10. The calculation does not determine your institution's grading rules or rounding policy.",
+      faqs: [
+        ["Why do courses have different influence?", "Each grade point is multiplied by its course credits, so a course with more credits contributes more to the weighted GPA."],
+        ["Can I use my university's grading scale?", "Yes. Switch to the custom scale and enter the point value from your institution's current grading rules."]
+      ]
+    },
+    cgpa: {
+      example: "A 15-credit semester at 3.4 and a 12-credit semester at 3.8 give (15 × 3.4 + 12 × 3.8) / (15 + 12) = 3.58 CGPA.",
+      steps: ["Enter each semester GPA exactly as reported by your institution.", "Enter the total credits counted in that semester and add a row for each semester.", "Calculate and confirm that all semesters use the same compatible GPA scale."],
+      mistakes: ["Taking a simple average of semester GPAs when semesters have different credit totals.", "Entering course credits in one row and a semester GPA in another, or mixing incompatible scales."],
+      limitation: "The calculation weights each semester GPA by its entered credits. It assumes all semester GPAs use the same scale and that the entered credit totals are the credits your institution uses for cumulative GPA.",
+      faqs: [
+        ["Why enter semester credits?", "Credit weighting accounts for different study loads. A semester with more credits has proportionally more influence on the combined result."],
+        ["Can I average semester GPAs without credits?", "This calculator requires credit totals because a simple average is only equivalent when every semester has the same credits."]
+      ]
+    },
+    attendance: {
+      example: "If 18 of 24 conducted classes were attended, attendance is 18 / 24 × 100 = 75%. The remaining 6 classes were missed.",
+      steps: ["Count classes your institution considers conducted.", "Enter the attended count and the conducted total.", "Calculate and compare the percentage with your course's attendance rule."],
+      mistakes: ["Counting cancelled classes or holidays as conducted when the institution excludes them.", "Entering the number of absences in the attended field."],
+      limitation: "The result is only as accurate as the counts entered. Institutions may count periods, days, labs, or eligible classes differently; this calculator cannot determine whether you meet a specific policy.",
+      faqs: [
+        ["Should cancelled classes be included?", "Use the count recognized by your institution. Exclude cancelled sessions if they are not counted as conducted classes."],
+        ["Does this check an attendance requirement?", "It calculates a percentage only. Confirm the applicable threshold and how attendance is recorded with your school."]
+      ]
+    },
+    bunk: {
+      example: "With 18 attended out of 20 and an 80% target, two additional missed classes leave 18 / 22 = 81.82%, while a third would fall below 80%.",
+      steps: ["Enter your current conducted and attended class counts.", "Enter the minimum attendance target you want to maintain.", "Calculate the largest whole number of additional missed classes that stays at or above the target."],
+      mistakes: ["Treating the maximum as a recommendation to skip classes.", "Forgetting that future attended or missed classes change both the counts and result."],
+      limitation: "This is a mathematical estimate with no safety margin. It assumes the current counts and target are correct and does not account for future timetable changes, institution exceptions, or attendance rules.",
+      faqs: [
+        ["Does the result include a safety buffer?", "No. It is the exact maximum under the entered numbers. Keep a personal buffer for schedule changes and verify your institution's rules."],
+        ["Why can the answer be zero?", "If another absence would take attendance below your target, the calculator reports that no further classes can be missed while meeting it."]
+      ]
+    },
+    "attendance-recovery": {
+      example: "At 5 attended out of 10 classes, attending 10 consecutive future classes gives 15 / 20 = 75%, reaching a 75% target.",
+      steps: ["Enter conducted and attended counts using your institution's records.", "Set the target percentage you need to reach.", "Calculate the number of upcoming classes you would need to attend in a row, assuming no additional absences."],
+      mistakes: ["Assuming the estimate allows for another absence during the recovery period.", "Entering a target as a decimal fraction (0.75) instead of a percentage (75)."],
+      limitation: "The estimate assumes every future class is attended and that each one increases both the attended and conducted counts by one. Institutional counting rules and future schedule changes may produce a different outcome.",
+      faqs: [
+        ["Can I recover to 100% after missing a class?", "No. Past absences remain in the total, so attending all future classes can improve but cannot restore 100%."],
+        ["What if I miss another class?", "Recalculate using the updated totals. The original estimate assumes no further absences."]
+      ]
+    },
+    percentage: {
+      example: "For 45 marks out of a possible 60, percentage = 45 / 60 × 100 = 75%.",
+      steps: ["Enter the marks earned.", "Enter the maximum possible marks for the same assessment.", "Calculate and check that both values refer to the same test or combined total."],
+      mistakes: ["Entering the maximum marks in the obtained field.", "Combining scores from assessments with different maximums without adding both obtained and possible marks."],
+      limitation: "This converts a score to a percentage; it does not convert percentages into a grade or account for a grading scale, assessment weighting, or institution-specific rounding.",
+      faqs: [
+        ["Can I enter decimal marks?", "Yes. Decimal values are accepted, as long as the obtained score is not greater than the maximum."],
+        ["How do I combine two tests?", "Add the earned marks together and add their maximum marks together, then enter those two totals."]
+      ]
+    },
+    "final-marks": {
+      example: "If internal performance is 80%, the internal share is 40%, and the overall target is 70%, the needed final score is (70 − 80 × 0.40) / 0.60 = 63.33%.",
+      steps: ["Enter your internal performance as a percentage from 0 to 100.", "Enter the final exam's share of the overall course grade.", "Enter the overall percentage you are aiming for, then calculate the required final exam percentage."],
+      mistakes: ["Entering raw internal marks instead of the internal percentage.", "Entering the internal share rather than the final exam's share in the weight field."],
+      limitation: "The formula assumes the internal and final components together make up the whole grade and that the entered weight is the final exam's percentage share. It does not model extra components, caps, curves, or institution-specific rounding.",
+      faqs: [
+        ["What if the required score is over 100%?", "The calculator reports that the target is not reachable under the entered weights and scores."],
+        ["What does a zero required score mean?", "Your weighted internal contribution already meets the target. Confirm the grading and weighting assumptions with your course."]
+      ]
+    },
+    average: {
+      example: "Marks of 80, 90, and 70 have an arithmetic mean of (80 + 90 + 70) / 3 = 80.",
+      steps: ["Enter one mark for each subject or assessment.", "Add a row for every mark that should count equally.", "Calculate and review the number of marks included in the result."],
+      mistakes: ["Mixing scores with different maximum marks, such as 8/10 and 80/100, as if they were directly comparable.", "Using this equal-weight mean when subjects have different credits or assessment weights."],
+      limitation: "The calculator gives each entered value equal weight and does not normalize marks by their maximum scores or apply course credits.",
+      faqs: [
+        ["Are subjects weighted by credits?", "No. Every entered mark has equal weight. Use a credit-weighted GPA tool when courses carry different credits."],
+        ["Can I average percentages instead?", "Yes, if the percentages are already comparable and each should count equally. For a combined score, add earned and maximum marks separately."]
+      ]
+    },
+    grade: {
+      example: "At 72 out of 100, the score is 72%. With thresholds A = 80% and B = 60%, the configured result is B.",
+      steps: ["Enter your score and its maximum value.", "Edit the grade labels and minimum percentages to match your current course scale.", "Calculate and check the threshold that matched the percentage."],
+      mistakes: ["Leaving default thresholds that do not match your course.", "Entering grade labels in place of their minimum percentage thresholds."],
+      limitation: "No national or institution-specific scale is assumed. The calculator selects the highest configured minimum threshold not greater than your percentage; it does not validate whether your scale is complete or official.",
+      faqs: [
+        ["Are the default grade boundaries official?", "No. Enter the boundaries from a current official source for your course before using the result."],
+        ["What if the percentage is below every threshold?", "The result says it is below the configured scale. Add or adjust a threshold if your grading rules include one."]
+      ]
+    },
+    age: {
+      example: "A birth date of 1 January 2000 calculated on 1 January 2025 is 25 years, 0 months, and 0 days.",
+      steps: ["Enter the birth date.", "Optionally enter a calculation date; otherwise the current date on your device is used.", "Calculate and confirm the dates are in the intended calendar and local time zone."],
+      mistakes: ["Reversing the birth date and calculation date.", "Assuming this converts dates from the Nepali Bikram Sambat calendar; the input uses the browser's Gregorian date control."],
+      limitation: "The calculator uses Gregorian calendar dates and the local browser date. It does not verify a person's date of birth or produce an official age certificate.",
+      faqs: [
+        ["Can I calculate age on a past date?", "Yes. Enter the date you want to calculate as of in the optional calculation-date field."],
+        ["Does it accept Bikram Sambat dates?", "No. Enter Gregorian calendar dates. Convert dates carefully using a trusted source if needed."]
+      ]
+    },
+    "date-difference": {
+      example: "From 28 February to 1 March 2024 is 2 elapsed calendar days because 2024 is a leap year.",
+      steps: ["Choose the start date.", "Choose the end date.", "Calculate the elapsed calendar-day difference; the order of the dates does not change the absolute count."],
+      mistakes: ["Adding both endpoints when you need elapsed days.", "Forgetting that leap years and month lengths affect the count."],
+      limitation: "The result is an absolute difference in Gregorian calendar days, not an inclusive count of every date touched or a count of school days.",
+      faqs: [
+        ["Is the start date included?", "The calculator reports elapsed days and does not add one for the start date."],
+        ["Does it count weekends or holidays?", "Yes. It counts calendar days. It does not remove weekends or public holidays."]
+      ]
+    },
+    countdown: {
+      example: "If an exam date is 10 November and the local current date is 31 October, there are 10 calendar days remaining.",
+      steps: ["Select the exam date.", "Calculate the calendar days from your device's current date.", "Use the count as a planning prompt and check the official exam timetable for changes."],
+      mistakes: ["Using an outdated exam date after a timetable update.", "Treating calendar days as available study days without accounting for commitments or rest."],
+      limitation: "The count uses the local browser date and includes calendar days, not study sessions. It does not fetch or verify an official examination schedule.",
+      faqs: [
+        ["Does the calculator know my exam timetable?", "No. It only calculates from the date you enter; check the current timetable published by your school or examination authority."],
+        ["Are weekends included?", "Yes. The output is calendar days and includes weekends and holidays."]
+      ]
+    },
+    "study-time": {
+      example: "Sharing 125 available minutes across 3 subjects gives 41 whole minutes per subject, with 2 minutes left unallocated.",
+      steps: ["Estimate the focused study minutes you actually have available.", "Enter how many subjects you want to include.", "Use the equal split as a starting point, then adjust time for difficulty, deadlines, and breaks."],
+      mistakes: ["Including breaks in focused study minutes but then forgetting to schedule those breaks.", "Assuming every subject needs the same amount of time."],
+      limitation: "The calculator divides time evenly and rounds down to whole minutes. It does not account for task difficulty, revision priorities, breaks, or travel and class schedules.",
+      faqs: [
+        ["Are breaks included?", "No. Enter focused study minutes and schedule breaks separately."],
+        ["Why is some time left over?", "The calculator gives each subject a whole number of minutes; any remainder that cannot be split evenly is shown as unallocated."]
+      ]
+    },
+    "assignment-deadline": {
+      example: "If an assignment is due tomorrow according to your local date, the result shows one day until the deadline.",
+      steps: ["Select the due date from your assignment instructions.", "Calculate the remaining or overdue calendar days using your device's current date.", "Check the deadline time and submission time zone in the official course instructions."],
+      mistakes: ["Entering the date the work should be started rather than the submission deadline.", "Assuming the date-only result accounts for an exact time, time zone, or late-submission grace period."],
+      limitation: "This tool compares calendar dates only. It does not know the submission time, course platform time zone, extensions, or late policies.",
+      faqs: [
+        ["Does the result include the deadline time?", "No. It uses dates only. Check your course instructions for the exact submission time and time zone."],
+        ["What does overdue mean?", "The selected due date is before the current local calendar date on your device."]
+      ]
+    }
   };
 
   const rootPath = document.body.dataset.root || "";
@@ -74,6 +218,7 @@
     if (toggle && nav) toggle.addEventListener("click", () => {
       const open = toggle.getAttribute("aria-expanded") !== "true";
       toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
       nav.classList.toggle("is-open", open);
     });
   }
@@ -85,9 +230,22 @@
   function renderCatalog() {
     document.querySelectorAll("[data-tool-catalog]").forEach(container => {
       const category = container.dataset.toolCatalog;
-      const list = category === "recent" ? tools.slice(-4).reverse() : category ? tools.filter(tool => tool.category === category) : tools;
+      const featured = ["neb-gpa", "see-gpa", "attendance", "percentage"];
+      const planning = ["study-time", "countdown", "assignment-deadline", "date-difference"];
+      const list = category === "featured"
+        ? tools.filter(tool => featured.includes(tool.id))
+        : category === "planning"
+          ? planning.map(id => byId(id))
+          : category ? tools.filter(tool => tool.category === category) : tools;
       container.innerHTML = list.map((tool, index) => card(tool, index)).join("");
     });
+  }
+
+  function guideMarkup(tool, copy, guide) {
+    const steps = guide.steps.map(step => `<li>${step}</li>`).join("");
+    const mistakes = guide.mistakes.map(mistake => `<li>${mistake}</li>`).join("");
+    const questions = guide.faqs.map(([question, answer]) => `<details class="tool-faq"><summary>${question}</summary><p>${answer}</p></details>`).join("");
+    return `<section class="article-content" aria-labelledby="tool-guide-title"><div><span class="eyebrow">LEARN THE METHOD</span><h2 id="tool-guide-title">How ${tool.title} works</h2><p>${copy[1]}</p><h3>Formula used</h3><p class="formula-inline" data-article-formula></p><h3>Worked example</h3><p>${guide.example}</p><h3>How to use it</h3><ol>${steps}</ol><h3>Common mistakes</h3><ul>${mistakes}</ul><h3>Frequently asked questions</h3>${questions}<h3>Limitations</h3><p>${guide.limitation} See the <a href="${rootPath}disclaimer.html">educational-use disclaimer</a> for more information.</p></div><aside class="article-aside"><span class="eyebrow">GOOD TO KNOW</span><p>Calculator inputs are processed in your browser and are not submitted to a StudentCalc application server.</p><a href="${rootPath}guides/index.html">Browse study guides <span aria-hidden="true">↗</span></a><a href="${rootPath}privacy-policy.html">Read the privacy policy</a></aside></section><section class="related-tools"><div class="section-heading"><div><span class="eyebrow">KEEP GOING</span><h2>Related calculators</h2></div></div><div class="tool-grid" data-related-tools></div></section>`;
   }
 
   function initSearch() {
@@ -123,8 +281,8 @@
 
   const gradeScaleRow = (label, minimum) => `<div class="grade-scale-row" data-grade-row><label class="field"><span>Grade label</span><input name="gradeLabel" value="${label}" maxlength="12" required></label><label class="field"><span>Minimum percentage</span><input name="gradeMin" type="number" min="0" max="100" step="any" value="${minimum}" required></label><button class="icon-button remove-grade" type="button" aria-label="Remove grade boundary" title="Remove boundary">−</button></div>`;
 
-  const cgpaSemesterRow = index => `<div class="cgpa-semester-row" data-cgpa-semester-row><div class="cgpa-index-badge" aria-hidden="true">${index + 1}</div><label class="cgpa-field"><span>Semester name</span><input name="name" type="text" placeholder="Semester ${index + 1}" maxlength="60"></label><label class="cgpa-field"><span>GPA (0–10)</span><input name="point" type="number" min="0" max="10" step="any" placeholder="e.g. 3.5" required></label><label class="cgpa-field"><span>Credits</span><input name="credit" type="number" min="0.001" step="any" placeholder="e.g. 15" required></label><button class="cgpa-remove-button" type="button" aria-label="Remove semester" title="Remove semester">×</button></div>`;
-  const cgpaFormMarkup = () => `<div class="cgpa-section-header"><h2>Semester results</h2><p>Use the GPA and credits from your transcript. GPA scale: 0–10.</p></div><div class="cgpa-semester-table"><div class="cgpa-table-header" aria-hidden="true"><span>Semester name</span><span>GPA (0–10)</span><span>Credits</span></div><div class="cgpa-semester-list" data-subject-list>${cgpaSemesterRow(0)}${cgpaSemesterRow(1)}</div><button class="cgpa-add-semester" type="button" data-add-subject>+ Add semester</button></div>`;
+  const cgpaSemesterRow = index => `<div class="cgpa-semester-row" data-cgpa-semester-row><div class="cgpa-index-badge" aria-hidden="true">${index + 1}</div><label class="cgpa-field"><span>Semester name</span><input name="name" type="text" placeholder="Semester ${index + 1}" maxlength="60"></label><label class="cgpa-field"><span>Semester GPA</span><input name="point" type="number" min="0" max="10" step="any" placeholder="e.g. 3.5" required></label><label class="cgpa-field"><span>Credits</span><input name="credit" type="number" min="0.001" step="any" placeholder="e.g. 15" required></label><button class="cgpa-remove-button" type="button" aria-label="Remove semester" title="Remove semester">×</button></div>`;
+  const cgpaFormMarkup = () => `<div class="cgpa-section-header"><h2>Semester results</h2><p>Use one consistent GPA scale for all semesters. Values from 0 to 10 are accepted.</p></div><div class="cgpa-semester-table"><div class="cgpa-table-header" aria-hidden="true"><span>Semester name</span><span>Semester GPA</span><span>Credits</span></div><div class="cgpa-semester-list" data-subject-list>${cgpaSemesterRow(0)}${cgpaSemesterRow(1)}</div><button class="cgpa-add-semester" type="button" data-add-subject>+ Add semester</button></div>`;
   const updateCgpaSemesterNumbers = list => list.querySelectorAll("[data-cgpa-semester-row]").forEach((row, index) => {
     row.querySelector(".cgpa-index-badge").textContent = String(index + 1);
     row.querySelector('[name="name"]').placeholder = `Semester ${index + 1}`;
@@ -166,11 +324,11 @@
 
   function nebFormMarkup() {
     const optionals = [1, 2, 3].map(index => nebSubjectCard(`Optional ${["I", "II", "III"][index - 1]}`, `optional-${index}`, nebSelect(`optional${index}`, "Subject", [], "Select Subject"))).join("");
-    return `<div class="neb-student-fields"><label class="field"><span>Student Name</span><input name="studentName" type="text" placeholder="Enter your full name" maxlength="80"></label>${nebSelect("stream", "Stream", ["science", "management"], "Choose Stream")}</div><p class="neb-note">Choose a stream and optional subjects, then fill every grade to calculate an instant marksheet.</p><h3 class="neb-group-heading">Compulsory subjects</h3><div class="neb-subject-grid neb-compulsory-grid">${nebSubjectCard("English", "compulsory-english")}${nebSubjectCard("Nepali", "compulsory-nepali")}${nebSubjectCard("Subject Choice", "choice", nebSelect("choice", "Subject", [], "Choose a stream first"))}</div><h3 class="neb-group-heading">Optional Subjects (Choose 3)</h3><div class="neb-subject-grid">${optionals}</div>`;
+    return `<div class="neb-student-fields"><label class="field"><span>Optional name on printed estimate</span><input name="studentName" type="text" placeholder="Optional" maxlength="80"></label>${nebSelect("stream", "Stream", ["science", "management"], "Choose Stream")}</div><p class="neb-note">Choose a stream and optional subjects, then fill every grade to calculate an estimate. The optional name is only used on the printout.</p><h3 class="neb-group-heading">Compulsory subjects</h3><div class="neb-subject-grid neb-compulsory-grid">${nebSubjectCard("English", "compulsory-english")}${nebSubjectCard("Nepali", "compulsory-nepali")}${nebSubjectCard("Subject Choice", "choice", nebSelect("choice", "Subject", [], "Choose a stream first"))}</div><h3 class="neb-group-heading">Optional Subjects (Choose 3)</h3><div class="neb-subject-grid">${optionals}</div>`;
   }
 
   function nebResultMarkup() {
-    return `<section class="result-panel neb-marksheet" data-result hidden aria-live="polite"><header class="neb-sheet-header"><div><span class="eyebrow">STUDENTCALC NEPAL · NEB GPA STATEMENT</span><h2>Academic Marksheet</h2></div><div class="neb-gpa-score"><span>Grade Point Average</span><strong data-result-summary></strong></div></header><div class="neb-sheet-meta"><span>Student <strong data-neb-result-student></strong></span><span>Stream <strong data-neb-result-stream></strong></span><span>Subjects <strong>6</strong></span></div><div class="neb-result-table-wrap"><table class="neb-result-table"><thead><tr><th>Subject</th><th>Theory</th><th>Practical/Internal</th><th>Credits</th><th>Grade Point</th><th>Weighted Points</th></tr></thead><tbody data-result-rows></tbody></table></div><p class="neb-result-details" data-result-details></p><div class="formula"><span>CALCULATION</span><p data-result-formula></p></div><footer class="neb-sheet-footer"><span>Estimate only · Confirm grades and credit values with your school.</span><button class="button button-quiet" type="button" data-print-result aria-label="Print marksheet">Print marksheet</button></footer></section>`;
+    return `<section class="result-panel neb-marksheet" data-result hidden aria-live="polite"><header class="neb-sheet-header"><div><span class="eyebrow">STUDENTCALC NEPAL · NEB GPA ESTIMATE</span><h2>Estimate breakdown</h2></div><div class="neb-gpa-score"><span>Grade Point Average</span><strong data-result-summary></strong></div></header><div class="neb-sheet-meta"><span>Student <strong data-neb-result-student></strong></span><span>Stream <strong data-neb-result-stream></strong></span><span>Subjects <strong>6</strong></span></div><div class="neb-result-table-wrap"><table class="neb-result-table"><thead><tr><th>Subject</th><th>Theory</th><th>Practical/Internal</th><th>Credits</th><th>Grade Point</th><th>Weighted Points</th></tr></thead><tbody data-result-rows></tbody></table></div><p class="neb-result-details" data-result-details></p><div class="formula"><span>CALCULATION</span><p data-result-formula></p></div><footer class="neb-sheet-footer"><span>Unofficial estimate · Confirm the current scale and credits with your school.</span><button class="button button-quiet" type="button" data-print-result aria-label="Print estimate">Print estimate</button></footer></section>`;
   }
 
   const seeCompulsorySubjects = ["English", "Nepali", "Mathematics", "Science", "Social Studies", "Health Population and Environment"];
@@ -185,11 +343,11 @@
       ["C+", "2.40", "37.5–44.99", "12.5–14.99"], ["C", "2.00", "30–37.49", "10–12.49"],
       ["D", "1.60", "26.25–29.99", "8.75–9.99"], ["NG", "N/A", "Below 26.25", "Below 8.75"],
     ].map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("");
-    return `<label class="field see-student-name"><span>Student Name</span><input name="studentName" type="text" placeholder="Enter your full name" maxlength="80"></label><p class="neb-note">Enter theory and practical grades for all six compulsory subjects and both optional subjects.</p><h3 class="neb-group-heading">Compulsory Subjects</h3><div class="neb-subject-grid see-compulsory-grid">${compulsory}</div><h3 class="neb-group-heading">Optional Subjects</h3><div class="neb-subject-grid see-optional-grid">${optionals}</div><details class="see-grade-scale"><summary>SEE grade-point scale</summary><div class="neb-result-table-wrap"><table class="neb-result-table"><thead><tr><th>Grade</th><th>Grade Point</th><th>Theory (75 marks)</th><th>Practical (25 marks)</th></tr></thead><tbody>${gradeRows}</tbody></table></div></details>`;
+    return `<label class="field see-student-name"><span>Optional name on printed estimate</span><input name="studentName" type="text" placeholder="Optional" maxlength="80"></label><p class="neb-note">Enter theory and practical grades for all six compulsory subjects and both optional subjects. The optional name is only used on the printout.</p><h3 class="neb-group-heading">Compulsory Subjects</h3><div class="neb-subject-grid see-compulsory-grid">${compulsory}</div><h3 class="neb-group-heading">Optional Subjects</h3><div class="neb-subject-grid see-optional-grid">${optionals}</div><details class="see-grade-scale"><summary>SEE grade-point scale</summary><div class="neb-result-table-wrap"><table class="neb-result-table"><thead><tr><th>Grade</th><th>Grade Point</th><th>Theory (75 marks)</th><th>Practical (25 marks)</th></tr></thead><tbody>${gradeRows}</tbody></table></div></details>`;
   }
 
   function seeResultMarkup() {
-    return `<section class="result-panel neb-marksheet" data-result hidden aria-live="polite"><header class="neb-sheet-header"><div><span class="eyebrow">STUDENTCALC NEPAL · SEE GPA STATEMENT</span><h2>Academic Marksheet</h2></div><div class="neb-gpa-score"><span>Grade Point Average</span><strong data-result-summary></strong></div></header><div class="neb-sheet-meta"><span>Student <strong data-see-result-student></strong></span><span>Examination <strong>SEE</strong></span><span>Subjects <strong>8</strong></span></div><div class="neb-result-table-wrap"><table class="neb-result-table"><thead><tr><th>Subject</th><th>Theory Grade</th><th>Practical Grade</th><th>Grade Point</th></tr></thead><tbody data-result-rows></tbody></table></div><p class="neb-result-details" data-result-details></p><div class="formula"><span>CALCULATION</span><p data-result-formula></p></div><footer class="neb-sheet-footer"><span>Estimate only · Confirm the grading scale with your school.</span><button class="button button-quiet" type="button" data-print-result aria-label="Print marksheet">Print marksheet</button></footer></section>`;
+    return `<section class="result-panel neb-marksheet" data-result hidden aria-live="polite"><header class="neb-sheet-header"><div><span class="eyebrow">STUDENTCALC NEPAL · SEE GPA ESTIMATE</span><h2>Estimate breakdown</h2></div><div class="neb-gpa-score"><span>Grade Point Average</span><strong data-result-summary></strong></div></header><div class="neb-sheet-meta"><span>Student <strong data-see-result-student></strong></span><span>Examination <strong>SEE</strong></span><span>Subjects <strong>8</strong></span></div><div class="neb-result-table-wrap"><table class="neb-result-table"><thead><tr><th>Subject</th><th>Theory Grade</th><th>Practical Grade</th><th>Grade Point</th></tr></thead><tbody data-result-rows></tbody></table></div><p class="neb-result-details" data-result-details></p><div class="formula"><span>CALCULATION</span><p data-result-formula></p></div><footer class="neb-sheet-footer"><span>Unofficial estimate · Confirm the current rules with your school.</span><button class="button button-quiet" type="button" data-print-result aria-label="Print estimate">Print estimate</button></footer></section>`;
   }
 
   function formMarkup(id) {
@@ -304,16 +462,16 @@
     if (id === "cgpa") mount.classList.add("cgpa-calculator");
     if (id === "university-gpa") mount.classList.add("university-gpa-calculator");
     document.title = `${tool.title} | StudentCalc Nepal`;
-    const learning = learningNotes[id];
+    const guide = calculatorGuides[id];
     const formActions = id === "cgpa"
       ? '<div class="cgpa-form-actions"><button class="button button-primary" type="submit">Calculate CGPA</button><button class="button button-quiet" type="reset">Reset</button></div>'
       : id === "university-gpa"
         ? '<div class="university-form-actions"><button class="button button-primary" type="submit">Calculate GPA</button><button class="button button-quiet" type="reset">Reset</button></div>'
       : '<div class="form-actions"><button class="button button-primary" type="submit">Calculate <span aria-hidden="true">→</span></button><button class="button button-quiet" type="reset">Reset</button></div>';
     const breadcrumb = `<div class="breadcrumb"><a href="${rootPath}index.html">Home</a><span>/</span><a href="${rootPath}index.html#calculators">Calculators</a><span>/</span><span>${tool.title}</span></div>`;
-    const cgpaMarkup = `${breadcrumb}<div class="cgpa-page"><h1>${tool.title}</h1><section class="calculator-panel" aria-label="CGPA calculator"><form data-calc-form novalidate>${formMarkup(id)}<div class="form-error" role="alert" aria-live="polite" hidden></div>${formActions}</form><section class="result-panel cgpa-result" data-result hidden aria-live="polite"><span class="eyebrow">Your CGPA</span><strong data-result-summary></strong><p data-result-details></p><ul class="cgpa-result-list" data-result-rows></ul></section></section></div>`;
-    const universityMarkup = `${breadcrumb}<div class="university-page"><h1>${tool.title}</h1><p class="university-page-lead">Enter each class's grade and credits to calculate your semester GPA.</p><section class="calculator-panel" aria-label="University GPA calculator"><form data-calc-form novalidate>${formMarkup(id)}<div class="form-error" role="alert" aria-live="polite" hidden></div>${formActions}</form><section class="result-panel university-result" data-result hidden aria-live="polite"><span class="eyebrow">Your GPA</span><strong data-result-summary></strong><p data-result-details></p><div class="result-rows" data-result-rows></div><div class="formula"><span>FORMULA</span><p data-result-formula></p></div></section></section></div>`;
-    const standardMarkup = `${breadcrumb}<div class="calculator-layout"><section class="calculator-intro"><span class="eyebrow">${tool.category}</span><h1>${tool.title}</h1><p class="lead">${copy[0]}</p><p>${copy[1]}</p><div class="trust-note"><span aria-hidden="true">✓</span> Free to use. Your entries stay in this browser.</div></section><section class="calculator-panel" aria-labelledby="form-title"><div class="panel-heading"><div><span class="eyebrow">STUDENT TOOL</span><h2 id="form-title">Enter your details</h2></div><span class="panel-mark">${iconFor(id)}</span></div><form data-calc-form novalidate>${formMarkup(id)}<div class="form-error" role="alert" aria-live="polite" hidden></div>${formActions}</form><section class="result-panel" data-result hidden aria-live="polite"><span class="eyebrow">YOUR RESULT</span><strong data-result-summary></strong><p data-result-details></p><div class="result-rows" data-result-rows></div><div class="formula"><span>FORMULA</span><p data-result-formula></p></div></section></section></div><section class="article-content"><div><span class="eyebrow">THE METHOD</span><h2>How this calculator works</h2><p>${copy[1]}</p><h3>Formula used</h3><p class="formula-inline" data-article-formula></p><h3>Worked example</h3><p>${learning[0]}</p><h3>How to use it</h3><ol><li>Enter values from your records or course requirements.</li><li>Select <strong>Calculate</strong> to see the result and breakdown.</li><li>Check the formula and confirm any institution-specific rules with your school.</li></ol><h3>Frequently asked question</h3><details class="tool-faq"><summary>${learning[1].split("?")[0]}?</summary><p>${learning[1].split("?").slice(1).join("?").trim()}</p></details></div><aside class="article-aside"><span class="eyebrow">GOOD TO KNOW</span><p>Calculations run locally in your browser. We do not submit your entries to a server.</p><a href="${rootPath}guides/index.html">Browse study guides <span aria-hidden="true">↗</span></a></aside></section><section class="related-tools"><div class="section-heading"><div><span class="eyebrow">KEEP GOING</span><h2>Related calculators</h2></div></div><div class="tool-grid" data-related-tools></div></section>`;
+    const cgpaMarkup = `${breadcrumb}<div class="cgpa-page"><h1>${tool.title}</h1><section class="calculator-panel" aria-label="CGPA calculator"><form data-calc-form novalidate>${formMarkup(id)}<div class="form-error" role="alert" aria-live="polite" hidden></div>${formActions}</form><section class="result-panel cgpa-result" data-result hidden aria-live="polite"><span class="eyebrow">Your CGPA</span><strong data-result-summary></strong><p data-result-details></p><ul class="cgpa-result-list" data-result-rows></ul></section></section></div>${guideMarkup(tool, copy, guide)}`;
+    const universityMarkup = `${breadcrumb}<div class="university-page"><h1>${tool.title}</h1><p class="university-page-lead">Enter each class's grade and credits to calculate your semester GPA.</p><section class="calculator-panel" aria-label="University GPA calculator"><form data-calc-form novalidate>${formMarkup(id)}<div class="form-error" role="alert" aria-live="polite" hidden></div>${formActions}</form><section class="result-panel university-result" data-result hidden aria-live="polite"><span class="eyebrow">Your GPA</span><strong data-result-summary></strong><p data-result-details></p><div class="result-rows" data-result-rows></div><div class="formula"><span>FORMULA</span><p data-result-formula></p></div></section></section></div>${guideMarkup(tool, copy, guide)}`;
+    const standardMarkup = `${breadcrumb}<div class="calculator-layout"><section class="calculator-intro"><span class="eyebrow">${tool.category}</span><h1>${tool.title}</h1><p class="lead">${copy[0]}</p><p>${copy[1]}</p><div class="trust-note"><span aria-hidden="true">✓</span> Free to use. Your entries stay in this browser.</div></section><section class="calculator-panel" aria-labelledby="form-title"><div class="panel-heading"><div><span class="eyebrow">STUDENT TOOL</span><h2 id="form-title">Enter your details</h2></div><span class="panel-mark">${iconFor(id)}</span></div><form data-calc-form novalidate>${formMarkup(id)}<div class="form-error" role="alert" aria-live="polite" hidden></div>${formActions}</form><section class="result-panel" data-result hidden aria-live="polite"><span class="eyebrow">YOUR RESULT</span><strong data-result-summary></strong><p data-result-details></p><div class="result-rows" data-result-rows></div><div class="formula"><span>FORMULA</span><p data-result-formula></p></div></section></section></div>${guideMarkup(tool, copy, guide)}`;
     mount.innerHTML = id === "cgpa" ? cgpaMarkup : id === "university-gpa" ? universityMarkup : standardMarkup;
     const formula = id === "neb-gpa" ? "Subject point = (theory grade point x theory marks + practical/internal grade point x practical/internal marks) / 100. GPA = sum(subject point x subject credits) / total credits." : id === "see-gpa" ? "Subject point = (theory grade point x 75 + practical grade point x 25) / 100. GPA = sum of all subject points / total subjects. NG has no grade point." : id.includes("gpa") || id === "cgpa" ? "GPA = sum(grade point x credit hours) / sum(credit hours). Theory and practical points, when both provided, are averaged equally for that subject. The grade label does not set a grade point; enter your institution's value." : id === "attendance" ? "Attendance % = attended classes / conducted classes x 100." : id === "bunk" ? "Maximum missed classes = floor(attended / target rate - conducted)." : id === "attendance-recovery" ? "Required classes = ceil((target rate x conducted - attended) / (1 - target rate))." : id === "percentage" ? "Percentage = obtained marks / total marks x 100." : id === "final-marks" ? "Required final = (target overall - internal x internal weight) / final exam weight." : id === "average" ? "Average = sum of marks / number of subjects." : id === "grade" ? "Grade is determined by the configured minimum percentage thresholds." : id === "age" ? "Calendar age = the difference between birth date and calculation date." : id === "date-difference" ? "Date difference = absolute calendar days between two dates." : id === "countdown" || id === "assignment-deadline" ? "Days remaining = selected date - today's date." : "Minutes per subject = floor(total available study minutes / subjects).";
     const articleFormula = mount.querySelector("[data-article-formula]");

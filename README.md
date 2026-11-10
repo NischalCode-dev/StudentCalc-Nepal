@@ -1,38 +1,36 @@
 # StudentCalc Nepal
 
-StudentCalc Nepal is a static, framework-free student calculator website. It uses HTML, CSS, and vanilla JavaScript; calculator inputs are evaluated in the browser without an account or application backend.
-
+StudentCalc Nepal is a static educational website for students in Nepal. It is built with HTML, CSS, and vanilla
+JavaScript and is designed for GitHub Pages. Calculator values are processed in the visitor's browser; the project
+does not include an application backend or account system.
 
 ## Project layout
 
-- `index.html`: homepage, calculator discovery, and search.
-- `calculators/`: individual calculator pages and the full tool directory.
-- `assets/js/calculators.js`: validated calculation functions and formulas.
-- `assets/js/app.js`: shared navigation, search, calculator forms, and results.
-- `assets/css/style.css`: responsive layout and visual system.
-- `guides/`: original educational explanations and worked examples.
-- `robots.txt` and `sitemap.xml`: crawl guidance and canonical URL inventory.
-# GPA Calculator
+- `index.html`: homepage, featured calculators, categories, and calculator search.
+- `calculators/`: individual calculator pages and the complete tool directory.
+- `assets/js/calculators.js`: calculation functions, input checks, and result formulas.
+- `assets/js/app.js`: shared navigation, calculator forms, explanations, and search.
+- `assets/css/style.css`: responsive visual styles and accessibility states.
+- `guides/`: original explanations and worked educational examples.
+- `about.html`, `contact.html`, `privacy-policy.html`, `terms.html`, and `disclaimer.html`: site information and policies.
+- `robots.txt` and `sitemap.xml`: crawler instructions and canonical URL inventory.
+- `tests/`: Node.js tests for calculator behavior and static site links.
 
-## About
-GPA Calculator is a free online tool that helps
-students calculate their Grade Point Average.
+## Run locally
 
-## Features
-- Easy-to-use interface
-- Calculate GPA automatically
-- Supports multiple subjects
-- Mobile-friendly design
+Open `index.html` in a browser, or use a local static web server to test relative links and calculator pages.
+No package installation or build step is required.
 
-## Technologies Used
-- HTML
-- CSS
-- JavaScript
+## Run tests
 
-## Installation
-1. Clone this repository.
-2. Open the project folder.
-3. Open index.html in your browser.
+With Node.js installed, run:
 
-## Author
-StudentCalc-Nepal
+```powershell
+node --test tests\site.test.js tests\calculators.test.js
+```
+
+## Calculation and privacy notes
+
+The calculator pages explain their formulas and assumptions. Grading scales, credit hours, and school policies can
+change; NEB and SEE results are estimates, not official records. Review the current `privacy-policy.html` before
+adding analytics, embedded services, or advertising code, and update it to reflect the actual implementation.
