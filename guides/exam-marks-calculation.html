@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-NP">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>How to Calculate Marks Needed in a Final Exam | StudentCalc Nepal</title>
+    <meta name="description"
+        content="Calculate the final exam score needed for an overall target using assessment weightage, with step-by-step examples and limitations.">
+    <meta property="og:title" content="How to Calculate Marks Needed in a Final Exam | StudentCalc Nepal">
+    <meta property="og:type" content="article">
+    <meta property="og:description"
+        content="A clear weighted-marks formula and examples for planning a final exam target.">
+    <meta property="og:url" content="https://www.kaflenischal1.com.np/guides/exam-marks-calculation.html">
+    <link rel="canonical" href="https://www.kaflenischal1.com.np/guides/exam-marks-calculation.html">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script defer src="../assets/js/calculators.js"></script>
+    <script defer src="../assets/js/app.js"></script>
+</head>
+
+<body data-root="../">
+    <header class="site-header" data-site-header></header>
+    <main class="content-page">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a
+                href="index.html">Study Guides</a><span aria-hidden="true">/</span><span aria-current="page">Exam marks
+                calculation</span></nav>
+        <article>
+            <span class="eyebrow">Exam planning</span>
+            <h1>How to calculate the marks you need in a final exam</h1>
+            <p>If a course combines internal assessment and a final examination by percentage weights, you can work
+                backward from an overall target to estimate the final score required. This is a planning calculation,
+                not a prediction or a guarantee: use the assessment structure and rounding rules provided by your
+                teacher or institution.</p>
+
+            <h2>Weighted final-score formula</h2>
+            <p>Let the internal score and final-exam score be percentages from 0 to 100. If the final exam has weight
+                <code>w</code> percent, the internal component has weight <code>100 - w</code> percent:</p>
+            <p><code>Overall = internal score &times; (1 - w / 100) + final score &times; (w / 100)</code></p>
+            <p>Rearranging gives
+                <code>Required final score = (target overall - internal score &times; (1 - w / 100)) / (w / 100)</code>.
+                The calculator assumes the internal and final components together make up the whole grade.</p>
+
+            <h2>Worked examples</h2>
+            <h3>Example 1: final worth 60%</h3>
+            <ol>
+                <li>Internal performance is 80%, the final exam weight is 60%, and the target overall is 70%.</li>
+                <li>The internal share is 40%, so its contribution is 80 &times; 0.40 = 32 percentage points.</li>
+                <li>Required final = (70 - 32) / 0.60 = 38 / 0.60 = <strong>63.33%</strong>.</li>
+            </ol>
+            <h3>Example 2: final worth half the grade</h3>
+            <ol>
+                <li>Internal performance is 68%; the final exam is worth 50%; the target overall is 75%.</li>
+                <li>The internal contribution is 68 &times; 0.50 = 34 points.</li>
+                <li>Required final = (75 - 34) / 0.50 = <strong>82%</strong>.</li>
+            </ol>
+
+            <h2>Using the estimate to plan</h2>
+            <p>Students preparing for school, NEB, or university assessments can use the calculation to turn a target
+                into a concrete practice goal. First confirm whether the internal input should be a percentage rather
+                than raw marks, and whether the stated final weight applies to the whole course. If the answer exceeds
+                100%, the target is mathematically unreachable under these inputs; discuss realistic next steps with
+                your teacher rather than changing the official weights.</p>
+
+            <h2>Common mistakes</h2>
+            <ul>
+                <li>Entering raw internal marks when the formula requires the internal component's percentage.</li>
+                <li>Entering the internal weight where the calculator asks for the final-exam weight.</li>
+                <li>Forgetting that the internal share is the remainder: 100% minus final weight.</li>
+                <li>Using this two-part formula for courses with extra components, caps, bonus marks, or different rules.</li>
+            </ul>
+
+            <h2>Frequently asked questions</h2>
+            <h3>What if my required final score is over 100%?</h3>
+            <p>With the entered scores and weights, the target cannot be reached by the final exam alone. Verify the
+                inputs and ask your institution about applicable course rules.</p>
+            <h3>What if my internal component is out of 25 marks?</h3>
+            <p>Convert it to a percentage first if the calculator expects a percentage. For example, 20 out of 25 is
+                80%. Use the institution's weighting to check that this conversion matches the course model.</p>
+            <h3>Does the result state a pass mark?</h3>
+            <p>No. It estimates the final score for the overall target you enter; it does not determine official pass
+                requirements.</p>
+
+            <p><a href="../calculators/final-marks-calculator.html">Estimate a final-exam score</a> ·
+                <a href="../calculators/percentage-calculator.html">Convert marks to a percentage</a> ·
+                <a href="index.html">Browse all study guides</a></p>
+        </article>
+    </main>
+    <footer class="site-footer" data-site-footer></footer>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-NP">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SEE GPA Explained: Website Estimate and Formula | StudentCalc Nepal</title>
+    <meta name="description"
+        content="Understand the SEE GPA calculator's grade-point mapping, 75/25 component weighting, equal subject average, worked examples, and limitations.">
+    <meta property="og:title" content="SEE GPA Explained: Website Estimate and Formula | StudentCalc Nepal">
+    <meta property="og:type" content="article">
+    <meta property="og:description"
+        content="Learn how StudentCalc Nepal's SEE estimate works and why it should not be treated as an official result.">
+    <meta property="og:url" content="https://www.kaflenischal1.com.np/guides/see-gpa.html">
+    <link rel="canonical" href="https://www.kaflenischal1.com.np/guides/see-gpa.html">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script defer src="../assets/js/calculators.js"></script>
+    <script defer src="../assets/js/app.js"></script>
+</head>
+
+<body data-root="../">
+    <header class="site-header" data-site-header></header>
+    <main class="content-page">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a
+                href="index.html">Study Guides</a><span aria-hidden="true">/</span><span aria-current="page">SEE GPA
+                estimate</span></nav>
+        <article>
+            <span class="eyebrow">SEE estimates</span>
+            <h1>Understanding the SEE GPA calculator</h1>
+            <p>This guide explains the calculation currently implemented in the StudentCalc Nepal SEE tool. It is a
+                website estimate, not a statement of official SEE policy or a substitute for an issued marksheet.
+                Subject combinations, grading rules, component weighting, and result treatment must be checked against
+                current guidance from your school or the examination authority.</p>
+
+            <h2>What the website calculator does</h2>
+            <p>The tool applies the following displayed grade-point values to theory and practical grades:</p>
+            <table>
+                <caption>Grade points encoded in the current website calculator, not an official policy table</caption>
+                <thead><tr><th scope="col">Displayed grade</th><th scope="col">Calculator point</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row">A+</th><td>4.0</td></tr>
+                    <tr><th scope="row">A</th><td>3.6</td></tr>
+                    <tr><th scope="row">B+</th><td>3.2</td></tr>
+                    <tr><th scope="row">B</th><td>2.8</td></tr>
+                    <tr><th scope="row">C+</th><td>2.4</td></tr>
+                    <tr><th scope="row">C</th><td>2.0</td></tr>
+                    <tr><th scope="row">D</th><td>1.6</td></tr>
+                    <tr><th scope="row">NG</th><td>No numeric point</td></tr>
+                </tbody>
+            </table>
+            <p>For each of the six compulsory and two optional subjects, the website model calculates
+                <code>subject point = (theory point &times; 75 + practical point &times; 25) / 100</code>.
+                It then calculates <code>GPA = sum of the eight subject points / 8</code>. Each subject is equally
+                weighted in this model; it does not apply subject credit hours. If either component is NG, the tool
+                marks that subject point unavailable and does not produce an overall GPA.</p>
+
+            <h2>Worked examples using this website model</h2>
+            <h3>Example 1: combine theory and practical points</h3>
+            <ol>
+                <li>On the displayed calculator scale, A is 3.6 and B is 2.8.</li>
+                <li>For theory A and practical B, calculate (3.6 &times; 75 + 2.8 &times; 25) / 100.</li>
+                <li>(270 + 70) / 100 = <strong>3.4 subject points</strong>.</li>
+            </ol>
+            <h3>Example 2: average eight subject points</h3>
+            <ol>
+                <li>Suppose seven entered subjects each have a calculated point of 3.6 and one has 3.2.</li>
+                <li>Add them: (7 &times; 3.6) + 3.2 = 28.4.</li>
+                <li>Divide by eight: 28.4 / 8 = <strong>3.55 GPA</strong> before any institution-specific treatment.</li>
+            </ol>
+
+            <h2>Using the estimate for SEE preparation</h2>
+            <p>You can use the tool to understand how different entered component grades affect a modeled average or to
+                check your arithmetic against a set of practice results. Compare the subjects and component results
+                with records supplied by your school. For an official result, rely on the current published SEE
+                rules and your official marksheet, not a website estimate.</p>
+
+            <h2>Common mistakes</h2>
+            <ul>
+                <li>Reversing theory and practical entries even though the website assigns them different weights.</li>
+                <li>Reading the calculator's table as an official or guaranteed current grade-point scale.</li>
+                <li>Assuming all schools or official result calculations treat subjects equally or exclude credits.</li>
+                <li>Treating NG as zero; the SEE calculator has no numeric point for NG and reports the GPA unavailable.</li>
+            </ul>
+
+            <h2>Frequently asked questions</h2>
+            <h3>Is the result an official SEE GPA?</h3>
+            <p>No. It is produced from the calculator's own displayed table, weighting, subject inputs, and equal-average
+                rule. Confirm official grading and result calculation with your school or the examination authority.</p>
+            <h3>Does the calculator use subject credits?</h3>
+            <p>No. Its current model equally averages the eight calculated subject points. Official subject or credit
+                treatment may differ.</p>
+            <h3>Why does NG make the overall result unavailable?</h3>
+            <p>The calculator implementation assigns NG no numeric point, so it cannot include that component in the
+                numeric estimate.</p>
+
+            <p><a href="../calculators/see-gpa-calculator.html">Try the SEE GPA calculator</a> ·
+                <a href="neb-grading-system.html">Read about the NEB tool's assumptions</a> ·
+                <a href="index.html">Browse all study guides</a></p>
+        </article>
+    </main>
+    <footer class="site-footer" data-site-footer></footer>
+</body>
+
+</html>

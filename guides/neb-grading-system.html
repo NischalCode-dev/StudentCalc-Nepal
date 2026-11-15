@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en-NP">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>NEB Grading System: Calculator Assumptions Explained | StudentCalc Nepal</title>
+    <meta name="description"
+        content="Review the grade points, subject credits, and component weights used by the StudentCalc Nepal NEB GPA estimate, with worked examples and official-rule cautions.">
+    <meta property="og:title" content="NEB Grading System: Calculator Assumptions Explained | StudentCalc Nepal">
+    <meta property="og:type" content="article">
+    <meta property="og:description"
+        content="A transparent explanation of the website's NEB GPA model, clearly distinguished from official NEB grading rules.">
+    <meta property="og:url" content="https://www.kaflenischal1.com.np/guides/neb-grading-system.html">
+    <link rel="canonical" href="https://www.kaflenischal1.com.np/guides/neb-grading-system.html">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script defer src="../assets/js/calculators.js"></script>
+    <script defer src="../assets/js/app.js"></script>
+</head>
+
+<body data-root="../">
+    <header class="site-header" data-site-header></header>
+    <main class="content-page">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a
+                href="index.html">Study Guides</a><span aria-hidden="true">/</span><span aria-current="page">NEB
+                grading assumptions</span></nav>
+        <article>
+            <span class="eyebrow">NEB estimates</span>
+            <h1>NEB grading: what the website calculator assumes</h1>
+            <p>“NEB grading system” can refer to official, programme-specific rules that are set by the relevant
+                authorities and may change. This page does not claim to reproduce those rules. It documents the
+                assumptions currently encoded in StudentCalc Nepal's NEB GPA calculator so students can interpret its
+                estimate and check it against current official materials.</p>
+
+            <h2>Grade points and subject weights in the calculator</h2>
+            <p>The website model maps the displayed grades as follows: A+ = 4.0, A = 3.6, B+ = 3.2, B = 2.8, C+ =
+                2.4, C = 2.0, D = 1.6, and NG = 0. These are the calculator's encoded values, not a representation
+                of an official NEB grade table.</p>
+            <p>For most subjects, the calculator uses a 75/25 theory-to-practical or internal split. Computer Science
+                and Hotel Management use a 50/50 split in this implementation. It assigns 3 credits to English,
+                Nepali, and Social Studies and Life Skills Education, and 5 credits to other listed subjects. The
+                selectable subjects are a simplified Science or Management stream setup.</p>
+            <p>Its calculations are
+                <code>subject point = (theory point &times; theory weight + practical/internal point &times; practical/internal weight) / 100</code>
+                and <code>GPA = sum(subject point &times; encoded subject credits) / total encoded credits</code>.
+                Check every scale, component share, subject list, and credit against current official guidance before
+                using a result for an academic decision.</p>
+
+            <h2>Worked examples using this website model</h2>
+            <h3>Example 1: a subject with a 75/25 split</h3>
+            <ol>
+                <li>Assume theory grade B is 2.8 and practical/internal grade A is 3.6 on this calculator's table.</li>
+                <li>Use the 75/25 split: (2.8 &times; 75 + 3.6 &times; 25) / 100.</li>
+                <li>(210 + 90) / 100 = <strong>3.0 subject points</strong>.</li>
+            </ol>
+            <h3>Example 2: combine two differently credited subjects</h3>
+            <ol>
+                <li>Take the 3-credit subject at 3.0 points from Example 1: 3 &times; 3.0 = 9 weighted points.</li>
+                <li>A 5-credit subject at 3.6 contributes 5 &times; 3.6 = 18 weighted points.</li>
+                <li>(9 + 18) / (3 + 5) = 27 / 8 = <strong>3.375</strong>, displayed by the calculator to two decimals
+                    as 3.38 GPA.</li>
+            </ol>
+
+            <h2>How students can use the estimate</h2>
+            <p>For practice or an arithmetic check, choose the calculator's stream and subjects, enter the component
+                grades shown on the relevant record, then inspect the displayed subject points and weighted
+                contributions. Do not assume the calculator's subject selection or encoded credits match your
+                programme. In Nepal, use current notices and official documents from your school or the relevant
+                examination authority to determine the grading policy that applies to you.</p>
+
+            <h2>Common mistakes</h2>
+            <ul>
+                <li>Assuming the website's mappings, subject options, or credits are official NEB rules.</li>
+                <li>Applying the same component split to every subject; this implementation encodes two exceptions.</li>
+                <li>Using a subject both as the selected choice and as an optional subject.</li>
+                <li>Comparing the unrounded intermediate result to a transcript without checking the official rounding method.</li>
+            </ul>
+
+            <h2>Frequently asked questions</h2>
+            <h3>Does this page state the current official NEB grading system?</h3>
+            <p>No. It describes only the calculation logic in this website. Confirm current official grading, subject,
+                component, and credit rules with the relevant school or examination authority.</p>
+            <h3>Why can the result differ from a marksheet?</h3>
+            <p>The official subject combination, grade conversion, credit assignment, component treatment, or rounding
+                may differ from the calculator's assumptions.</p>
+            <h3>Which subjects use a 50/50 component split in this tool?</h3>
+            <p>Computer Science and Hotel Management use 50/50 in the current implementation; most other listed
+                subjects use 75/25.</p>
+
+            <p><a href="../calculators/neb-gpa-calculator.html">Try the NEB GPA calculator</a> ·
+                <a href="see-gpa.html">Compare the SEE calculator model</a> ·
+                <a href="index.html">Browse all study guides</a></p>
+        </article>
+    </main>
+    <footer class="site-footer" data-site-footer></footer>
+</body>
+
+</html>

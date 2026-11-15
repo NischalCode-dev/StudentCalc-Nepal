@@ -92,3 +92,30 @@ test("every calculator has its own complete educational guide", () => {
   assert.match(guideBody, /does not apply subject credit hours/);
   assert.match(guideBody, /applies its encoded 3- or 5-credit values/);
 });
+
+test("the eight expanded study guides are linked, accessible, and discoverable", () => {
+  const guides = [
+    "gpa-calculation.html",
+    "see-gpa.html",
+    "neb-grading-system.html",
+    "percentage-calculation.html",
+    "attendance-calculation.html",
+    "cgpa-calculation.html",
+    "exam-marks-calculation.html",
+    "study-planning.html",
+  ];
+  const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
+  const guideIndex = fs.readFileSync(path.join(root, "guides", "index.html"), "utf8");
+
+  for (const guide of guides) {
+    const relative = `guides/${guide}`;
+    const source = fs.readFileSync(path.join(root, relative), "utf8");
+    assert.ok(homepage.includes(relative), `Homepage does not link to ${relative}`);
+    assert.ok(guideIndex.includes(guide), `Guide index does not link to ${guide}`);
+    assert.match(source, /<nav class="breadcrumb" aria-label="Breadcrumb">/, `${relative} needs an accessible breadcrumb`);
+    assert.match(source, /<h1>/, `${relative} needs a main heading`);
+    assert.match(source, /Frequently asked questions/, `${relative} needs FAQs`);
+    assert.match(source, /<ol>/, `${relative} needs step-by-step examples`);
+    assert.match(source, /calculators\/[^"]+\.html/, `${relative} needs a related calculator link`);
+  }
+});
